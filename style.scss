@@ -247,6 +247,13 @@ a {
         justify-content: space-between;
     }
 
+    .h-first-line {
+        .name-photo-container {
+            display: flex;
+            align-items: center;
+        }
+    }
+
     .p-section {
         margin-top: 62px;
         display: flex;
