@@ -29,45 +29,89 @@ grained('#loader-grained', options);
 // loader animation
 
 const loaderAnimation = () => {
-  const loaderTl = anime.timeline({}).add({
-    targets: '.loader-img',
-    opacity: 1,
-    delay: anime.stagger(250, { start: 300 }),
-    begin: () => {
-      anime({
-        targets: '.counter',
-        value: [1, 100],
-        duration: 4000,
+  const loaderTl = anime
+    .timeline({})
+    .add({
+      targets: '.loader-img',
+      opacity: 1,
+      delay: anime.stagger(250, { start: 300 }),
+      begin: () => {
+        anime({
+          targets: '.counter',
+          value: [1, 100],
+          duration: 4000,
+          easing: 'easeInOutCubic',
+          round: 1,
+        });
+      },
+    })
+    .add(
+      {
+        targets: '.loader-content',
         easing: 'easeInOutCubic',
-        round: 1,
-      });
-    },
-  });
-  // .add(
-  //   {
-  //     targets: '.loader-content',
-  //     easing: 'easeInOutCubic',
-  //     opacity: 0,
-  //     duration: 1500,
-  //   },
-  //   '-=500'
-  // )
-  // .add(
-  //   {
-  //     targets: '#loader',
-  //     easing: 'easeInOutCubic',
-  //     opacity: 0,
-  //     duration: 1500,
-  //     complete: () => {
-  //       const loader = document.getElementById('loader');
-  //       loader.style.display = 'none';
-  //     },
-  //   },
-  //   '-=500'
-  // );
+        opacity: 0,
+        duration: 1500,
+      },
+      '-=900'
+    )
+    .add(
+      {
+        targets: '#loader',
+        easing: 'easeInOutCubic',
+        opacity: 0,
+        duration: 1500,
+        complete: () => {
+          const loader = document.getElementById('loader');
+          loader.style.display = 'none';
+        },
+      },
+      '-=700'
+    )
+    .add(
+      {
+        targets: '.h-first-line',
+        easing: 'easeInOutCubic',
+        translateX: ['-100%', 0],
+        duration: 2500,
+      },
+      '-=1000'
+    )
+    .add(
+      {
+        targets: '.h-second-line',
+        easing: 'easeInOutCubic',
+        translateX: ['120%', 0],
+        duration: 2500,
+      },
+      '-=2500'
+    )
+    .add(
+      {
+        targets: '.fade-in-top',
+        easing: 'easeInOutCubic',
+        opacity: [0, 1],
+        translateY: [20, 0],
+        duration: 1000,
+      },
+      '-=900'
+    )
+    .add(
+      {
+        targets: '.h-portrait',
+        easing: 'linear',
+        opacity: [0, 1],
+        keyframes: [
+          { translateY: -20, translateX: -20, duration: 500 },
+          { translateY: -40, translateX: 0, duration: 500 },
+          { translateY: -20, translateX: 20, duration: 400 },
+          { translateY: -1, translateX: -2, duration: 400 },
+          { translateY: -9, translateX: -15, duration: 400 },
+          { translateY: -15, translateX: 0, duration: 400 },
+        ],
+      },
+      '-=700'
+    );
 };
-
-const tl = anime.timeline({}).add;
 
 loaderAnimation();
 
