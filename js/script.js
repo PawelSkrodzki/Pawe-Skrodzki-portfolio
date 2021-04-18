@@ -29,6 +29,7 @@ grained('#loader-grained', options);
 // loader animation
 
 const loaderAnimation = () => {
+<<<<<<< HEAD
   const loaderTl = anime
     .timeline({})
     .add({
@@ -113,6 +114,48 @@ const loaderAnimation = () => {
     );
 };
 
+=======
+  const loaderTl = anime.timeline({}).add({
+    targets: '.loader-img',
+    opacity: 1,
+    delay: anime.stagger(250, { start: 300 }),
+    begin: () => {
+      anime({
+        targets: '.counter',
+        value: [1, 100],
+        duration: 4000,
+        easing: 'easeInOutCubic',
+        round: 1,
+      });
+    },
+  });
+  // .add(
+  //   {
+  //     targets: '.loader-content',
+  //     easing: 'easeInOutCubic',
+  //     opacity: 0,
+  //     duration: 1500,
+  //   },
+  //   '-=500'
+  // )
+  // .add(
+  //   {
+  //     targets: '#loader',
+  //     easing: 'easeInOutCubic',
+  //     opacity: 0,
+  //     duration: 1500,
+  //     complete: () => {
+  //       const loader = document.getElementById('loader');
+  //       loader.style.display = 'none';
+  //     },
+  //   },
+  //   '-=500'
+  // );
+};
+
+const tl = anime.timeline({}).add;
+
+>>>>>>> 2a1b4598265f03d3aee6f55ecb75d88f28ac04c5
 loaderAnimation();
 
 // zapasowy kod animacji loadera
