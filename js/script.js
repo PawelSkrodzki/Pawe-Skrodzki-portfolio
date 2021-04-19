@@ -2,7 +2,6 @@ const clockSpan = document.getElementById('time');
 const dateSpan = document.getElementById('date');
 const yearSpan = document.getElementById('year');
 
-
 showTime = () => {
   clockSpan.innerHTML = `${moment().format('h:mm')}`;
   dateSpan.innerHTML = `${moment().format('DD.MM')}`;
@@ -30,42 +29,42 @@ grained('#loader-grained', options);
 const loaderAnimation = () => {
   const loaderTl = anime
     .timeline({})
-    .add({
-      targets: '.loader-img',
-      opacity: 1,
-      delay: anime.stagger(250, { start: 300 }),
-      begin: () => {
-        anime({
-          targets: '.counter',
-          value: [1, 100],
-          duration: 4000,
-          easing: 'easeInOutCubic',
-          round: 1,
-        });
-      },
-    })
-    .add(
-      {
-        targets: '.loader-content',
-        easing: 'easeInOutCubic',
-        opacity: 0,
-        duration: 1500,
-      },
-      '-=900'
-    )
-    .add(
-      {
-        targets: '#loader',
-        easing: 'easeInOutCubic',
-        opacity: 0,
-        duration: 1500,
-        complete: () => {
-          const loader = document.getElementById('loader');
-          loader.style.display = 'none';
-        },
-      },
-      '-=700'
-    )
+    // .add({
+    //   targets: '.loader-img',
+    //   opacity: 1,
+    //   delay: anime.stagger(250, { start: 300 }),
+    //   begin: () => {
+    //     anime({
+    //       targets: '.counter',
+    //       value: [1, 100],
+    //       duration: 4000,
+    //       easing: 'easeInOutCubic',
+    //       round: 1,
+    //     });
+    //   },
+    // })
+    // .add(
+    //   {
+    //     targets: '.loader-content',
+    //     easing: 'easeInOutCubic',
+    //     opacity: 0,
+    //     duration: 1500,
+    //   },
+    //   '-=900'
+    // )
+    // .add(
+    //   {
+    //     targets: '#loader',
+    //     easing: 'easeInOutCubic',
+    //     opacity: 0,
+    //     duration: 1500,
+    //     complete: () => {
+    //       const loader = document.getElementById('loader');
+    //       loader.style.display = 'none';
+    //     },
+    //   },
+    //   '-=700'
+    // )
     .add(
       {
         targets: '.h-first-line',
@@ -113,6 +112,21 @@ const loaderAnimation = () => {
 };
 
 loaderAnimation();
+
+var controller = new ScrollMagic.Controller();
+
+const animatedObjectsCollection = document.getElementsByClassName('animated-p');
+const animatedObjectsArray = [].slice.call(animatedObjectsCollection);
+
+new ScrollMagic.Scene({
+  triggerElement: '#animate',
+  triggerHook: 0.9, // show, when scrolled 10% into view
+  offset: 50, // move trigger to center of element
+})
+  .setVelocity('#animate', { opacity: 0 }, { duration: 400 })
+  .addTo(controller);
+
+animatedObjectsArray.forEach((object) => {});
 
 // zapasowy kod animacji loadera
 
