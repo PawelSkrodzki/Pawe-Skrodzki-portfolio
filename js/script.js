@@ -1,3 +1,5 @@
+alert('123');
+
 const clockSpan = document.getElementById('time');
 const dateSpan = document.getElementById('date');
 const yearSpan = document.getElementById('year');
