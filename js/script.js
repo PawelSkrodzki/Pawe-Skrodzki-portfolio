@@ -113,6 +113,7 @@ const loaderAnimation = () => {
 
 loaderAnimation();
 
+<<<<<<< HEAD
 const fadeInBottomCollection = document.getElementsByClassName('fadein-bottom');
 const fadeInBottomArray = [].slice.call(fadeInBottomCollection);
 
@@ -256,6 +257,22 @@ const juniorPositionAnimation = () => {
 };
 
 juniorPositionAnimation();
+=======
+var controller = new ScrollMagic.Controller();
+
+const animatedObjectsCollection = document.getElementsByClassName('animated-p');
+const animatedObjectsArray = [].slice.call(animatedObjectsCollection);
+
+new ScrollMagic.Scene({
+  triggerElement: '#animate',
+  triggerHook: 0.9, // show, when scrolled 10% into view
+  offset: 50, // move trigger to center of element
+})
+  .setVelocity('#animate', { opacity: 0 }, { duration: 400 })
+  .addTo(controller);
+
+animatedObjectsArray.forEach((object) => {});
+>>>>>>> fe2696cafd813ffeef13b7d9a923403261cc458c
 
 // zapasowy kod animacji loadera
 

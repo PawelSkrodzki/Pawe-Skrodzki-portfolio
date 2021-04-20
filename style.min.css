@@ -244,10 +244,17 @@ input[type="number"]::-webkit-outer-spin-button input {
   font-size: 27px;
   line-height: 90%;
   color: #e4f51a;
+<<<<<<< HEAD
   margin-right: 2px;
   font-size: 27px;
   line-height: 90%;
   color: #e4f51a;
+=======
+  font-size: 27px;
+  line-height: 90%;
+  color: #e4f51a;
+  background-color: pink;
+>>>>>>> fe2696cafd813ffeef13b7d9a923403261cc458c
 }
 
 #loader .loader-content .counter-span label {
