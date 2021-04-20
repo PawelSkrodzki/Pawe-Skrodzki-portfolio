@@ -38,6 +38,10 @@ a {
   text-decoration: none;
 }
 
+.visible {
+  color: pink;
+}
+
 input,
 label,
 select,
@@ -63,6 +67,16 @@ input[type="number"]::-webkit-outer-spin-button {
   margin: 0;
 }
 
+input[type="number"]::-webkit-inner-spin-button input,
+input[type="number"]::-webkit-outer-spin-button input {
+  border: 0;
+  margin: 0;
+  background: none;
+  pointer-events: none;
+  font-size: 13px;
+  font-family: Arial;
+}
+
 #loader {
   z-index: 1;
   position: absolute;
@@ -72,6 +86,7 @@ input[type="number"]::-webkit-outer-spin-button {
   max-width: 100%;
   height: 100vh;
   background-color: black;
+  display: none;
 }
 
 #loader #loader-grained {
@@ -218,6 +233,8 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 26px;
   line-height: 90%;
   font-family: "Apple Garamond";
+  font-size: 27px;
+  line-height: 90%;
 }
 
 #loader .loader-content .counter-span .counter {
@@ -227,6 +244,14 @@ input[type="number"]::-webkit-outer-spin-button {
   font-size: 27px;
   line-height: 90%;
   color: #e4f51a;
+  margin-right: 2px;
+  font-size: 27px;
+  line-height: 90%;
+  color: #e4f51a;
+}
+
+#loader .loader-content .counter-span label {
+  text-align: left;
 }
 
 .main-container {
@@ -338,11 +363,14 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .projects-h {
   margin: 128px 0 0 15px;
+  z-index: 9999;
 }
 
 .project-overlay-container {
   position: relative;
   height: 450px;
+  width: 1px;
+  z-index: 1;
 }
 
 .project-overlay-container .project-main-container {
@@ -357,15 +385,26 @@ input[type="number"]::-webkit-outer-spin-button {
           transform: rotate(13deg);
   -webkit-transform-origin: top left;
           transform-origin: top left;
+  cursor: pointer;
+}
+
+.project-overlay-container .project-main-container .project-photo-overlay:hover img {
+  -webkit-transform: scale(1.5);
+          transform: scale(1.5);
 }
 
 .project-overlay-container .project-main-container .project-photo-overlay {
   position: relative;
   margin-right: 30px;
+  overflow: hidden;
 }
 
 .project-overlay-container .project-main-container .project-photo-overlay img {
   height: 380px;
+  -webkit-transition: -webkit-transform 0.6s;
+  transition: -webkit-transform 0.6s;
+  transition: transform 0.6s;
+  transition: transform 0.6s, -webkit-transform 0.6s;
 }
 
 .project-overlay-container .project-main-container .project-photo-overlay .project-number {
@@ -394,11 +433,16 @@ input[type="number"]::-webkit-outer-spin-button {
   max-width: 390px;
 }
 
-.junior-position-container h2 {
-  line-height: 96%;
+.junior-position-container .position-h-overlay {
+  overflow: hidden;
 }
 
-.junior-position-container .h-right {
+.junior-position-container .position-h-overlay h2 {
+  line-height: 110%;
+  padding-right: 10px;
+}
+
+.junior-position-container .position-h-overlay .h-right {
   text-align: right;
 }
 
@@ -478,6 +522,14 @@ input[type="number"]::-webkit-outer-spin-button {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+  }
+  .h-first-line .name-photo-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
   .p-section {
     margin-top: 62px;

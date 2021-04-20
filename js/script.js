@@ -29,42 +29,42 @@ grained('#loader-grained', options);
 const loaderAnimation = () => {
   const loaderTl = anime
     .timeline({})
-    .add({
-      targets: '.loader-img',
-      opacity: 1,
-      delay: anime.stagger(250, { start: 300 }),
-      begin: () => {
-        anime({
-          targets: '.counter',
-          value: [1, 100],
-          duration: 4000,
-          easing: 'easeInOutCubic',
-          round: 1,
-        });
-      },
-    })
-    .add(
-      {
-        targets: '.loader-content',
-        easing: 'easeInOutCubic',
-        opacity: 0,
-        duration: 1500,
-      },
-      '-=900'
-    )
-    .add(
-      {
-        targets: '#loader',
-        easing: 'easeInOutCubic',
-        opacity: 0,
-        duration: 1500,
-        complete: () => {
-          const loader = document.getElementById('loader');
-          loader.style.display = 'none';
-        },
-      },
-      '-=700'
-    )
+    // .add({
+    //   targets: '.loader-img',
+    //   opacity: 1,
+    //   delay: anime.stagger(250, { start: 300 }),
+    //   begin: () => {
+    //     anime({
+    //       targets: '.counter',
+    //       value: [1, 100],
+    //       duration: 4000,
+    //       easing: 'easeInOutCubic',
+    //       round: 1,
+    //     });
+    //   },
+    // })
+    // .add(
+    //   {
+    //     targets: '.loader-content',
+    //     easing: 'easeInOutCubic',
+    //     opacity: 0,
+    //     duration: 1500,
+    //   },
+    //   '-=900'
+    // )
+    // .add(
+    //   {
+    //     targets: '#loader',
+    //     easing: 'easeInOutCubic',
+    //     opacity: 0,
+    //     duration: 1500,
+    //     complete: () => {
+    //       const loader = document.getElementById('loader');
+    //       loader.style.display = 'none';
+    //     },
+    //   },
+    //   '-=700'
+    // )
     .add(
       {
         targets: '.h-first-line',
@@ -112,6 +112,150 @@ const loaderAnimation = () => {
 };
 
 loaderAnimation();
+
+const fadeInBottomCollection = document.getElementsByClassName('fadein-bottom');
+const fadeInBottomArray = [].slice.call(fadeInBottomCollection);
+
+const fadeInBottomAnimation = () => {
+  fadeInBottomArray.forEach((object) => {
+    object.style.opacity = 0;
+
+    new Waypoint({
+      element: object,
+      handler: function () {
+        anime({
+          targets: object,
+          easing: 'easeInOutCubic',
+          duration: 1000,
+          opacity: [0, 1],
+          translateY: [20, 0],
+          loop: false,
+        });
+        this.destroy();
+      },
+      offset: '75%',
+    });
+  });
+};
+
+fadeInBottomAnimation();
+
+const projectsAnimationTrigger = document.querySelector('.projects-timeline');
+const projectsContainer = document.querySelector('.project-main-container');
+
+const projectsAnimation = () => {
+  projectsAnimationTrigger.style.opacity = 0;
+  projectsContainer.style.transform = 'rotate(13deg) translateX(100%) ';
+
+  new Waypoint({
+    element: projectsAnimationTrigger,
+    handler: function () {
+      const tl = anime
+        .timeline({
+          easing: 'easeInOutCubic',
+        })
+        .add({
+          targets: '.projects-h',
+          keyframes: [
+            { opacity: 1, duration: 1 },
+            { translateY: ['200%', 0], duration: 800 },
+          ],
+        })
+        .add(
+          {
+            targets: '.project-main-container',
+            translateX: 0,
+            duration: 2000,
+          },
+          '-=700'
+        );
+      this.destroy();
+    },
+    offset: '75%',
+  });
+};
+
+projectsAnimation();
+
+const junorPositionTrigger = document.querySelector(
+  '.junior-position-container'
+);
+
+const juniorPositionHeadingsCollection = document.querySelectorAll(
+  '.position-h'
+);
+
+const juniorPositionHeadingsArray = [].slice.call(
+  juniorPositionHeadingsCollection
+);
+
+const juniorPositionAnimation = () => {
+  juniorPositionHeadingsArray.forEach((heading) => {
+    heading.style.transform = 'translateY(115%)';
+  });
+
+  new Waypoint({
+    element: junorPositionTrigger,
+    handler: function () {
+      const tl = anime
+        .timeline({
+          easing: 'easeInOutCubic',
+        })
+        .add({
+          targets: '.position-h',
+          translateY: 0,
+          duration: 1000,
+        })
+        .add({
+          targets: '.position-h',
+          translateY: 0,
+          duration: 1000,
+        })
+        .add(
+          {
+            targets: '.position-h-overlay-1',
+            easing: 'easeInOutCubic',
+            keyframes: [
+              { translateX: [300, 0], translateY: [200, 0], duration: 1600 },
+            ],
+          },
+          800
+        )
+        .add(
+          {
+            targets: '.position-h-overlay-2',
+            easing: 'easeInOutCubic',
+            keyframes: [
+              { translateX: [-200, 0], translateY: [200, 0], duration: 1600 },
+            ],
+          },
+          800
+        )
+        .add(
+          {
+            targets: '.position-h-overlay-3',
+            easing: 'easeInOutCubic',
+            keyframes: [
+              { translateX: [300, 0], translateY: [200, 0], duration: 1600 },
+            ],
+          },
+          800
+        )
+        .add(
+          {
+            targets: '.position-p',
+            opacity: [0, 1],
+            translateY: [100, 0],
+          },
+          '-=500'
+        );
+      this.destroy();
+    },
+    offset: '60%',
+  });
+};
+
+juniorPositionAnimation();
 
 // zapasowy kod animacji loadera
 
