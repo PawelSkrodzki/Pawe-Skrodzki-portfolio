@@ -113,22 +113,22 @@ const loaderAnimation = () => {
 
 loaderAnimation();
 
-const fadeInBottomCollection = document.getElementsByClassName('fadein-bottom');
-const fadeInBottomArray = [].slice.call(fadeInBottomCollection);
+const fadeInBottomAnimation = (elementsClass) => {
+  const fadeInBottomCollection = document.querySelectorAll(elementsClass);
+  const fadeInBottomArray = [].slice.call(fadeInBottomCollection);
 
-const fadeInBottomAnimation = () => {
-  fadeInBottomArray.forEach((object) => {
-    object.style.opacity = 0;
+  fadeInBottomArray.forEach((element) => {
+    element.style.opacity = 0;
 
     new Waypoint({
-      element: object,
+      element: element,
       handler: function () {
         anime({
-          targets: object,
+          targets: element,
           easing: 'easeInOutCubic',
           duration: 1000,
           opacity: [0, 1],
-          translateY: [20, 0],
+          translateY: [100, 0],
           loop: false,
         });
         this.destroy();
@@ -138,7 +138,7 @@ const fadeInBottomAnimation = () => {
   });
 };
 
-fadeInBottomAnimation();
+fadeInBottomAnimation('.fadein-bottom');
 
 const projectsAnimationTrigger = document.querySelector('.projects-timeline');
 const projectsContainer = document.querySelector('.project-main-container');
@@ -165,9 +165,12 @@ const projectsAnimation = () => {
           {
             targets: '.project-main-container',
             translateX: 0,
-            duration: 2000,
+            duration: 1500,
+            complete: () => {
+              horizontalProjectsScrolling();
+            },
           },
-          '-=700'
+          100
         );
       this.destroy();
     },
@@ -177,17 +180,11 @@ const projectsAnimation = () => {
 
 projectsAnimation();
 
-const junorPositionTrigger = document.querySelector(
-  '.junior-position-container'
-);
+const junorPositionTrigger = document.querySelector('.junior-position-container');
 
-const juniorPositionHeadingsCollection = document.querySelectorAll(
-  '.position-h'
-);
+const juniorPositionHeadingsCollection = document.querySelectorAll('.position-h');
 
-const juniorPositionHeadingsArray = [].slice.call(
-  juniorPositionHeadingsCollection
-);
+const juniorPositionHeadingsArray = [].slice.call(juniorPositionHeadingsCollection);
 
 const juniorPositionAnimation = () => {
   juniorPositionHeadingsArray.forEach((heading) => {
@@ -205,6 +202,7 @@ const juniorPositionAnimation = () => {
           targets: '.position-h',
           translateY: 0,
           duration: 1000,
+          delay: 1000,
         })
         .add({
           targets: '.position-h',
@@ -215,9 +213,7 @@ const juniorPositionAnimation = () => {
           {
             targets: '.position-h-overlay-1',
             easing: 'easeInOutCubic',
-            keyframes: [
-              { translateX: [300, 0], translateY: [200, 0], duration: 1600 },
-            ],
+            keyframes: [{ translateX: [300, 0], translateY: [200, 0], duration: 1600 }],
           },
           800
         )
@@ -225,9 +221,7 @@ const juniorPositionAnimation = () => {
           {
             targets: '.position-h-overlay-2',
             easing: 'easeInOutCubic',
-            keyframes: [
-              { translateX: [-200, 0], translateY: [200, 0], duration: 1600 },
-            ],
+            keyframes: [{ translateX: [-200, 0], translateY: [200, 0], duration: 1600 }],
           },
           800
         )
@@ -235,9 +229,7 @@ const juniorPositionAnimation = () => {
           {
             targets: '.position-h-overlay-3',
             easing: 'easeInOutCubic',
-            keyframes: [
-              { translateX: [300, 0], translateY: [200, 0], duration: 1600 },
-            ],
+            keyframes: [{ translateX: [300, 0], translateY: [200, 0], duration: 1600 }],
           },
           800
         )
@@ -251,11 +243,73 @@ const juniorPositionAnimation = () => {
         );
       this.destroy();
     },
-    offset: '60%',
+    offset: '20%',
   });
 };
 
+const horizontalProjectsScrolling = () => {
+  let controller = new ScrollMagic.Controller();
+
+  // let tl2 = anime.timeline({ autoplay: false });
+
+  let animation = anime({
+    targets: '#conten',
+    easing: 'easeInOutCubic',
+    translateX: [0, '-100%'],
+    duration: 2000,
+    delay: 0,
+    autoplay: false,
+    complete: () => {
+      photosTrigger = document.querySelector('.photos-container');
+      mediaTrigger = document.querySelector('.media-list');
+
+      groupFadeInBottomAnimation(photosTrigger, '.single-photo');
+      groupFadeInBottomAnimation(mediaTrigger, '.media');
+
+      fadeInBottomAnimation('.footer-fadein-bottom');
+    },
+  });
+
+  let scene = new ScrollMagic.Scene({
+    triggerElement: '#section',
+    duration: 2000,
+    triggerHook: 0,
+  })
+
+    .on('progress', function (event) {
+      animation.seek(animation.duration * event.progress);
+    })
+
+    .setPin('#section')
+    .addTo(controller);
+};
+
 juniorPositionAnimation();
+
+const groupFadeInBottomAnimation = (trigger, objectsClass) => {
+  const objectsHtmlCollection = document.querySelectorAll(objectsClass);
+  const objectsHtmlArray = [].slice.call(objectsHtmlCollection);
+
+  objectsHtmlArray.forEach((element) => {
+    element.style.opacity = 0;
+  });
+
+  new Waypoint({
+    element: trigger,
+    handler: function () {
+      anime({
+        targets: objectsClass,
+        easing: 'easeInOutCubic',
+        opacity: 1,
+        translateY: [100, 0],
+        delay: anime.stagger(250),
+        duration: 800,
+      });
+      this.destroy();
+    },
+    offset: '80%',
+  });
+};
 
 // zapasowy kod animacji loadera
 

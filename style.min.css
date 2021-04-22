@@ -361,24 +361,28 @@ input[type="number"]::-webkit-outer-spin-button input {
   max-width: 234px;
 }
 
-.projects-h {
-  margin: 128px 0 0 15px;
-  z-index: 9999;
+#section {
+  margin-top: 128px;
 }
 
-.project-overlay-container {
+#section .projects-h {
+  margin: 0 0 0 15px;
+}
+
+#section .project-overlay-container {
   position: relative;
   height: 450px;
   width: 1px;
   z-index: 1;
 }
 
-.project-overlay-container .project-main-container {
+#section .project-overlay-container .project-main-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   z-index: -1;
   position: absolute;
+  height: auto;
   top: -20px;
   left: 70px;
   -webkit-transform: rotate(13deg);
@@ -388,18 +392,18 @@ input[type="number"]::-webkit-outer-spin-button input {
   cursor: pointer;
 }
 
-.project-overlay-container .project-main-container .project-photo-overlay:hover img {
+#section .project-overlay-container .project-main-container .project-photo-overlay:hover img {
   -webkit-transform: scale(1.5);
           transform: scale(1.5);
 }
 
-.project-overlay-container .project-main-container .project-photo-overlay {
+#section .project-overlay-container .project-main-container .project-photo-overlay {
   position: relative;
   margin-right: 30px;
   overflow: hidden;
 }
 
-.project-overlay-container .project-main-container .project-photo-overlay img {
+#section .project-overlay-container .project-main-container .project-photo-overlay img {
   height: 380px;
   -webkit-transition: -webkit-transform 0.6s;
   transition: -webkit-transform 0.6s;
@@ -407,7 +411,7 @@ input[type="number"]::-webkit-outer-spin-button input {
   transition: transform 0.6s, -webkit-transform 0.6s;
 }
 
-.project-overlay-container .project-main-container .project-photo-overlay .project-number {
+#section .project-overlay-container .project-main-container .project-photo-overlay .project-number {
   position: absolute;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -416,7 +420,7 @@ input[type="number"]::-webkit-outer-spin-button input {
   font-size: 22px;
 }
 
-.project-overlay-container .project-main-container .project-photo-overlay .project-title {
+#section .project-overlay-container .project-main-container .project-photo-overlay .project-title {
   position: absolute;
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
@@ -543,10 +547,10 @@ input[type="number"]::-webkit-outer-spin-button input {
   .p-section .p-photo-container {
     margin-top: 242px;
   }
-  .project-overlay-container {
+  #section .project-overlay-container {
     height: 500px;
   }
-  .project-overlay-container .project-main-container {
+  #section .project-overlay-container .project-main-container {
     left: 370px;
   }
   .contact-container {
@@ -596,19 +600,19 @@ input[type="number"]::-webkit-outer-spin-button input {
   .nav-bar .nav-left-side .open-for-job {
     margin-left: 20px;
   }
-  .project-overlay-container {
+  #section .project-overlay-container {
     height: 650px;
   }
-  .project-overlay-container .project-main-container {
+  #section .project-overlay-container .project-main-container {
     left: 470px;
   }
-  .project-overlay-container .project-main-container .project-photo-overlay img {
+  #section .project-overlay-container .project-main-container .project-photo-overlay img {
     height: 503px;
   }
-  .project-overlay-container .project-main-container .project-photo-overlay .project-number {
+  #section .project-overlay-container .project-main-container .project-photo-overlay .project-number {
     font-size: 28px;
   }
-  .project-overlay-container .project-main-container .project-photo-overlay .project-title {
+  #section .project-overlay-container .project-main-container .project-photo-overlay .project-title {
     font-size: 42px;
   }
   .junior-position-container {
@@ -654,10 +658,10 @@ input[type="number"]::-webkit-outer-spin-button input {
     font-size: 24px;
     max-width: 466px;
   }
-  .projects-h {
+  #section {
     margin-top: 160px;
   }
-  .project-overlay-container .project-main-container {
+  #section .project-overlay-container .project-main-container {
     left: 590px;
   }
   .junior-position-container {
@@ -688,7 +692,7 @@ input[type="number"]::-webkit-outer-spin-button input {
   h2 {
     font-size: 152px;
   }
-  .project-overlay-container .project-main-container {
+  #section .project-overlay-container .project-main-container {
     left: 630px;
   }
   .footer p:last-of-type {
