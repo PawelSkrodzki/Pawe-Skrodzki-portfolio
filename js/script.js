@@ -43,71 +43,71 @@ const enableScrolling = () => {
 const loaderAnimation = () => {
   const loaderTl = anime
     .timeline({})
-    // .add({
-    //   targets: '.loader-img',
-    //   opacity: 1,
-    //   delay: anime.stagger(250, { start: 300 }),
-    //   begin: () => {
-    //     anime({
-    //       targets: '.counter',
-    //       value: [1, 100],
-    //       duration: 4000,
-    //       easing: 'easeInOutCubic',
-    //       round: 1,
-    //     });
-    //     disableScrolling();
-    //   },
-    // })
-    // .add(
-    //   {
-    //     targets: '.loader-img',
-    //     easing: 'easeInOutCubic',
-    //     translateX: function (el, i) {
-    //       return anime.random(-1000, 1000);
-    //     },
-    //     translateY: function (el, i) {
-    //       return anime.random(-1000, 1000);
-    //     },
-    //     rotate: function () {
-    //       return anime.random(-360, 360);
-    //     },
-    //     duration: 2000,
-    //     direction: 'alternate',
-    //   },
-    //   '-=800'
-    // )
-    // .add(
-    //   {
-    //     targets: '.loader-content',
-    //     easing: 'easeInOutCubic',
-    //     opacity: 0,
-    //     duration: 1500,
-    //   },
-    //   '-=900'
-    // )
-    // .add(
-    //   {
-    //     targets: '#loader',
-    //     easing: 'easeInOutCubic',
-    //     opacity: 0,
-    //     duration: 1500,
-    //     begin: () => {
-    //       // hide first animated elements
-    //       const fadeInBottomInvViewCollection = document.querySelectorAll('.fadein-bottom-inview');
-    //       const fadeInBottomInvViewArray = [].slice.call(fadeInBottomInvViewCollection);
+    .add({
+      targets: '.loader-img',
+      opacity: 1,
+      delay: anime.stagger(250, { start: 300 }),
+      begin: () => {
+        anime({
+          targets: '.counter',
+          value: [1, 100],
+          duration: 4000,
+          easing: 'easeInOutCubic',
+          round: 1,
+        });
+        disableScrolling();
+      },
+    })
+    .add(
+      {
+        targets: '.loader-img',
+        easing: 'easeInOutCubic',
+        translateX: function (el, i) {
+          return anime.random(1000, 3000);
+        },
+        translateY: function (el, i) {
+          return anime.random(-1000, 1000);
+        },
+        rotate: function () {
+          return anime.random(-360, 360);
+        },
+        duration: 2000,
+        direction: 'alternate',
+      },
+      '-=800'
+    )
+    .add(
+      {
+        targets: '.loader-content',
+        easing: 'easeInOutCubic',
+        opacity: 0,
+        duration: 1500,
+      },
+      '-=900'
+    )
+    .add(
+      {
+        targets: '#loader',
+        easing: 'easeInOutCubic',
+        opacity: 0,
+        duration: 1500,
+        begin: () => {
+          // hide first animated elements
+          const fadeInBottomInvViewCollection = document.querySelectorAll('.fadein-bottom-inview');
+          const fadeInBottomInvViewArray = [].slice.call(fadeInBottomInvViewCollection);
 
-    //       fadeInBottomInvViewArray.forEach((element) => {
-    //         element.style.opacity = 0;
-    //       });
-    //     },
-    //     complete: () => {
-    //       enableScrolling();
-    //       const loader = document.getElementById('loader');
-    //       loader.style.display = 'none';
-    //     },
-    //   },
-    //   '-=700'
-    // )
+          fadeInBottomInvViewArray.forEach((element) => {
+            element.style.opacity = 0;
+          });
+        },
+        complete: () => {
+          enableScrolling();
+          const loader = document.getElementById('loader');
+          loader.style.display = 'none';
+        },
+      },
+      '-=700'
+    )
     .add(
       {
         targets: '.h-first-line',
