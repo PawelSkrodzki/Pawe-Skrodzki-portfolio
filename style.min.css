@@ -30,16 +30,13 @@ h2 {
 
 p,
 span,
-a {
+a,
+li {
   font-size: 20px;
   font-weight: 300;
   font-family: "Apple Garamond";
   color: #e4f51a;
   text-decoration: none;
-}
-
-.visible {
-  color: pink;
 }
 
 input,
@@ -75,6 +72,10 @@ input[type="number"]::-webkit-outer-spin-button input {
   pointer-events: none;
   font-size: 13px;
   font-family: Arial;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 #loader {
@@ -304,6 +305,21 @@ input[type="number"]::-webkit-outer-spin-button input {
   margin-bottom: 14px;
 }
 
+.nav-bar .index-container {
+  position: relative;
+}
+
+.nav-bar .index-container .menu {
+  position: absolute;
+  top: 30px;
+  list-style-type: none;
+  display: none;
+}
+
+.nav-bar .index-container .menu li {
+  padding: 5px 0 5px 0;
+}
+
 .h-first-line {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -526,6 +542,11 @@ input[type="number"]::-webkit-outer-spin-button input {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+  }
+  .nav-bar .index-container .menu {
+    right: 5px;
+    min-width: 150px;
+    text-align: right;
   }
   .h-first-line .name-photo-container {
     display: -webkit-box;

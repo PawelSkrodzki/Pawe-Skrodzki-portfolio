@@ -24,6 +24,20 @@ var options = {
 grained('#main-grained', options);
 grained('#loader-grained', options);
 
+//scrolling functions
+
+const disableScrolling = () => {
+  const x = window.scrollX;
+  const y = window.scrollY;
+  window.onscroll = function () {
+    window.scrollTo(x, y);
+  };
+};
+
+const enableScrolling = () => {
+  window.onscroll = function () {};
+};
+
 // loader animation
 
 const loaderAnimation = () => {
@@ -41,8 +55,27 @@ const loaderAnimation = () => {
     //       easing: 'easeInOutCubic',
     //       round: 1,
     //     });
+    //     disableScrolling();
     //   },
     // })
+    // .add(
+    //   {
+    //     targets: '.loader-img',
+    //     easing: 'easeInOutCubic',
+    //     translateX: function (el, i) {
+    //       return anime.random(-1000, 1000);
+    //     },
+    //     translateY: function (el, i) {
+    //       return anime.random(-1000, 1000);
+    //     },
+    //     rotate: function () {
+    //       return anime.random(-360, 360);
+    //     },
+    //     duration: 2000,
+    //     direction: 'alternate',
+    //   },
+    //   '-=800'
+    // )
     // .add(
     //   {
     //     targets: '.loader-content',
@@ -58,7 +91,17 @@ const loaderAnimation = () => {
     //     easing: 'easeInOutCubic',
     //     opacity: 0,
     //     duration: 1500,
+    //     begin: () => {
+    //       // hide first animated elements
+    //       const fadeInBottomInvViewCollection = document.querySelectorAll('.fadein-bottom-inview');
+    //       const fadeInBottomInvViewArray = [].slice.call(fadeInBottomInvViewCollection);
+
+    //       fadeInBottomInvViewArray.forEach((element) => {
+    //         element.style.opacity = 0;
+    //       });
+    //     },
     //     complete: () => {
+    //       enableScrolling();
     //       const loader = document.getElementById('loader');
     //       loader.style.display = 'none';
     //     },
@@ -90,6 +133,9 @@ const loaderAnimation = () => {
         opacity: [0, 1],
         translateY: [20, 0],
         duration: 1000,
+        complete: () => {
+          fadeInBottomAnimation('.fadein-bottom-inview');
+        },
       },
       '-=900'
     )
@@ -112,6 +158,8 @@ const loaderAnimation = () => {
 };
 
 loaderAnimation();
+
+// rest of animations
 
 const fadeInBottomAnimation = (elementsClass) => {
   const fadeInBottomCollection = document.querySelectorAll(elementsClass);
@@ -137,8 +185,6 @@ const fadeInBottomAnimation = (elementsClass) => {
     });
   });
 };
-
-fadeInBottomAnimation('.fadein-bottom');
 
 const projectsAnimationTrigger = document.querySelector('.projects-timeline');
 const projectsContainer = document.querySelector('.project-main-container');
@@ -310,6 +356,49 @@ const groupFadeInBottomAnimation = (trigger, objectsClass) => {
     offset: '80%',
   });
 };
+
+// menu function
+
+const indexElement = document.querySelector('.index-menu');
+const menuElement = document.querySelector('.menu');
+
+const openMenu = () => {
+  anime({
+    targets: '.menu-item',
+    easing: 'easeInOutCubic',
+    opacity: [0, 1],
+    translateX: [20, 0],
+    delay: anime.stagger(200),
+    begin: () => {
+      menuElement.classList.add('open');
+      menuElement.style.display = 'block';
+    },
+  });
+};
+
+const closeMenu = () => {
+  anime({
+    targets: '.menu-item',
+    easing: 'easeInOutCubic',
+    opacity: 0,
+    translateX: [0, 20],
+    delay: anime.stagger(200),
+    complete: () => {
+      menuElement.classList.remove('open');
+      menuElement.style.display = 'none';
+    },
+  });
+};
+
+indexElement.addEventListener('click', () => {
+  let isMenuOpen = menuElement.classList.contains('open');
+
+  if (!isMenuOpen) {
+    openMenu();
+  } else {
+    closeMenu();
+  }
+});
 
 // zapasowy kod animacji loadera
 
