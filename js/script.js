@@ -2,6 +2,8 @@ const clockSpan = document.getElementById('time');
 const dateSpan = document.getElementById('date');
 const yearSpan = document.getElementById('year');
 
+const test = '1';
+
 showTime = () => {
   clockSpan.innerHTML = `${moment().format('h:mm')}`;
   dateSpan.innerHTML = `${moment().format('DD.MM')}`;
