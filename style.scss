@@ -15,6 +15,55 @@ body {
     background-color: rgb(0, 0, 0);
 }
 
+html,
+body {
+    cursor: none;
+    overflow-x: hidden;
+}
+
+// cursor styles
+
+.cursor {
+    position: absolute;
+    background-color: #e4f51a;
+    width: 8px;
+    height: 8px;
+    border-radius: 100%;
+    z-index: 10;
+    transition: 0.5s; //ewentualnie edytować
+    user-select: none;
+    pointer-events: none;
+    transform: scale(0.8);
+}
+
+.cursor::before {
+    content: "open";
+    font-size: 22px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transform: translateX(-200%);
+    top: 10px;
+    left: 0;
+    display: block;
+    // background-image: url("http://mirkozeppieri.emanuelepapale.com/wp-content/uploads/2018/07/project-hover-cursor.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 100%;
+    opacity: 0;
+}
+
+.cursor.active {
+    opacity: 1;
+    // background-color: transparent;
+    // transform: scale(12);
+}
+
+.cursor.active::before {
+    opacity: 1;
+}
+
 h1 {
     font-size: 87px;
     font-weight: 300;
@@ -45,13 +94,87 @@ button,
 textarea {
     margin: 0;
     border: 0;
-    padding: 0;
+    // padding: 10px 20px;
     display: inline-block;
     vertical-align: middle;
     white-space: normal;
     background: none;
     font-family: "Apple Garamond";
+    color: #e4f51a;
+    font-size: 20px;
+    cursor: none;
 }
+
+// button {
+//     z-index: 99;
+//     text-transform: uppercase;
+//     box-shadow: inset 0 0 0 2px transparent;
+//     color: #e4f51a;
+//     font-size: inherit;
+//     font-weight: 700;
+//     position: relative;
+//     vertical-align: middle;
+//     cursor: pointer;
+
+//     &::before,
+//     &::after {
+//         box-sizing: inherit;
+//         content: "";
+//         position: absolute;
+//         width: 100%;
+//         height: 100%;
+//     }
+// }
+
+// .draw {
+//     transition: color 0.25s;
+//     border-radius: 100%;
+
+//     &::before,
+//     &::after {
+//         // Set border to invisible, so we don't see a 4px border on a 0x0 element before the transition starts
+//         border: 2px solid transparent;
+//         width: 0;
+//         height: 0;
+//     }
+
+//     // This covers the top & right borders (expands right, then down)
+//     &::before {
+//         top: 0;
+//         left: 0;
+//     }
+
+//     // And this the bottom & left borders (expands left, then up)
+//     &::after {
+//         bottom: 0;
+//         right: 0;
+//     }
+
+//     // Hover styles
+//     &:hover::before,
+//     &:hover::after {
+//         width: 100%;
+//         height: 100%;
+//     }
+
+//     &:hover::before {
+//         border-top-color: #e4f51a; // Make borders visible
+//         border-right-color: #e4f51a;
+//         transition: width 0.25s ease-out,
+//             // Width expands first
+//             height 0.25s ease-out 0.25s; // And then height
+//     }
+
+//     &:hover::after {
+//         border-bottom-color: #e4f51a; // Make borders visible
+//         border-left-color: #e4f51a;
+//         transition: border-color 0s ease-out 0.5s,
+//             // Wait for ::before to finish before showing border
+//             width 0.25s ease-out 0.5s,
+//             // And then exanding width
+//             height 0.25s ease-out 0.75s; // And finally height
+//     }
+// }
 
 input:focus {
     outline: 0;
@@ -68,7 +191,7 @@ input[type="number"]::-webkit-outer-spin-button {
         background: none;
         pointer-events: none;
         font-size: 13px;
-        font-family: Arial;
+        font-family: "Apple Garamond";
     }
 }
 
@@ -87,7 +210,7 @@ input[type="number"] {
     max-width: 100%;
     height: 100vh;
     background-color: rgb(0, 0, 0);
-    // display: none;
+    display: none;
 
     #loader-grained {
         width: 100%;
@@ -225,7 +348,6 @@ input[type="number"] {
 .nav-bar {
     display: flex;
     flex-direction: column;
-    text-transform: uppercase;
 
     .nav-left-side {
         display: flex;
@@ -273,9 +395,9 @@ input[type="number"] {
 
     .name-photo-container {
         display: flex;
-        align-items: center;
 
         img {
+            align-self: flex-start;
             height: 70px;
             width: 70px;
             margin: 0 30px;
@@ -308,7 +430,7 @@ input[type="number"] {
     }
 }
 
-#section {
+#projects-section-container {
     margin-top: 128px;
 
     .projects-h {
@@ -330,20 +452,20 @@ input[type="number"] {
             transform: rotate(13deg);
             transform-origin: top left;
 
-            cursor: pointer;
-
-            .project-photo-overlay:hover img {
-                transform: scale(1.5);
-            }
-
             .project-photo-overlay {
                 position: relative;
                 margin-right: 30px;
                 overflow: hidden;
+                height: 380px;
+
+                &:hover img {
+                    transform: scale(1.2);
+                }
 
                 img {
                     height: 380px;
                     transition: transform 0.6s;
+                    transition-delay: 0.5s;
                 }
 
                 .project-number {
@@ -352,6 +474,8 @@ input[type="number"] {
                     top: 37%;
                     left: 50%;
                     font-size: 22px;
+                    cursor: none;
+                    pointer-events: none;
                 }
 
                 .project-title {
@@ -362,6 +486,8 @@ input[type="number"] {
                     font-size: 32px;
                     line-height: 92%;
                     text-align: center;
+                    cursor: none;
+                    pointer-events: none;
                 }
             }
         }
@@ -378,7 +504,6 @@ input[type="number"] {
 
         h2 {
             line-height: 110%;
-            padding-right: 10px;
         }
 
         .h-right {
@@ -484,11 +609,14 @@ input[type="number"] {
             margin-top: 242px;
         }
     }
-    #section {
+    #projects-section-container {
         .project-overlay-container {
             height: 500px;
             .project-main-container {
                 left: 370px;
+                .project-photo-overlay {
+                    height: 380px;
+                }
             }
         }
     }
@@ -538,12 +666,13 @@ input[type="number"] {
             }
         }
     }
-    #section {
+    #projects-section-container {
         .project-overlay-container {
             height: 650px;
             .project-main-container {
                 left: 470px;
                 .project-photo-overlay {
+                    height: 500px;
                     img {
                         height: 503px;
                     }
@@ -564,9 +693,17 @@ input[type="number"] {
         max-width: 520px;
         padding: 0;
 
+        .position-h {
+            width: 100%;
+        }
         .last-h-container {
             display: flex;
             justify-content: space-between;
+
+            .position-h-overlay-3 {
+                min-width: 65%;
+            }
+
             p {
                 margin: 30px 0 0 20px;
                 max-width: 248px;
@@ -608,7 +745,7 @@ input[type="number"] {
         }
     }
 
-    #section {
+    #projects-section-container {
         margin-top: 160px;
 
         .project-overlay-container {
@@ -654,7 +791,7 @@ input[type="number"] {
     h2 {
         font-size: 152px;
     }
-    #section {
+    #projects-section-container {
         .project-overlay-container {
             .project-main-container {
                 left: 630px;

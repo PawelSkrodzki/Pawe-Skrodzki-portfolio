@@ -38,76 +38,123 @@ const enableScrolling = () => {
   window.onscroll = function () {};
 };
 
+// cursor functions
+
+const cursor = document.querySelector('.cursor');
+const projectContainersCollection = document.querySelectorAll('.project-photo-overlay');
+const projectContainersArray = [].slice.call(projectContainersCollection);
+// const projectTitlesCollection = document.querySelectorAll('.project-number, .project-title');
+// const projectTitlesArray = [].slice.call(projectTitlesCollection);
+
+let posX = 0;
+let posY = 0;
+let mouseX = 0;
+let mouseY = 0;
+
+TweenMax.to({}, 0.016, {
+  repeat: -1,
+  onRepeat: () => {
+    posX += (mouseX - posX) / 9;
+    posY += (mouseY - posY) / 9;
+
+    TweenMax.set(cursor, {
+      css: {
+        left: mouseX,
+        top: mouseY,
+      },
+    });
+  },
+});
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.pageX;
+  mouseY = e.pageY;
+});
+
+projectContainersArray.forEach((container) => {
+  container.addEventListener('mouseenter', () => {
+    setTimeout(() => {
+      cursor.classList.add('active');
+    }, 500);
+  });
+
+  container.addEventListener('mouseout', () => {
+    setTimeout(() => {
+      cursor.classList.remove('active');
+    }, 500);
+  });
+});
+
 // loader animation
 
 const loaderAnimation = () => {
   const loaderTl = anime
     .timeline({})
-    .add({
-      targets: '.loader-img',
-      opacity: 1,
-      delay: anime.stagger(250, { start: 300 }),
-      begin: () => {
-        anime({
-          targets: '.counter',
-          value: [1, 100],
-          duration: 4000,
-          easing: 'easeInOutCubic',
-          round: 1,
-        });
-        disableScrolling();
-      },
-    })
-    .add(
-      {
-        targets: '.loader-img',
-        easing: 'easeInOutCubic',
-        translateX: function (el, i) {
-          return anime.random(1000, 3000);
-        },
-        translateY: function (el, i) {
-          return anime.random(-1000, 1000);
-        },
-        rotate: function () {
-          return anime.random(-360, 360);
-        },
-        duration: 2000,
-        direction: 'alternate',
-      },
-      '-=800'
-    )
-    .add(
-      {
-        targets: '.loader-content',
-        easing: 'easeInOutCubic',
-        opacity: 0,
-        duration: 1500,
-      },
-      '-=900'
-    )
-    .add(
-      {
-        targets: '#loader',
-        easing: 'easeInOutCubic',
-        opacity: 0,
-        duration: 1500,
-        begin: () => {
-          // hide first animated elements
-          const fadeInBottomInvViewCollection = document.querySelectorAll('.fadein-bottom-inview');
-          const fadeInBottomInvViewArray = [].slice.call(fadeInBottomInvViewCollection);
+    // .add({
+    //   targets: '.loader-img',
+    //   opacity: 1,
+    //   delay: anime.stagger(250, { start: 300 }),
+    //   begin: () => {
+    //     anime({
+    //       targets: '.counter',
+    //       value: [1, 100],
+    //       duration: 4000,
+    //       easing: 'easeInOutCubic',
+    //       round: 1,
+    //     });
+    //     disableScrolling();
+    //   },
+    // })
+    // .add(
+    //   {
+    //     targets: '.loader-img',
+    //     easing: 'easeInOutCubic',
+    //     translateX: function (el, i) {
+    //       return anime.random(1000, 3000);
+    //     },
+    //     translateY: function (el, i) {
+    //       return anime.random(-1000, 1000);
+    //     },
+    //     rotate: function () {
+    //       return anime.random(-360, 360);
+    //     },
+    //     duration: 2000,
+    //     direction: 'alternate',
+    //   },
+    //   '-=800'
+    // )
+    // .add(
+    //   {
+    //     targets: '.loader-content',
+    //     easing: 'easeInOutCubic',
+    //     opacity: 0,
+    //     duration: 1500,
+    //   },
+    //   '-=900'
+    // )
+    // .add(
+    //   {
+    //     targets: '#loader',
+    //     easing: 'easeInOutCubic',
+    //     opacity: 0,
+    //     duration: 1500,
+    //     begin: () => {
+    //       // hide first animated elements
+    //       const fadeInBottomInvViewCollection = document.querySelectorAll('.fadein-bottom-inview');
+    //       const fadeInBottomInvViewArray = [].slice.call(fadeInBottomInvViewCollection);
 
-          fadeInBottomInvViewArray.forEach((element) => {
-            element.style.opacity = 0;
-          });
-        },
-        complete: () => {
-          enableScrolling();
-          const loader = document.getElementById('loader');
-          loader.style.display = 'none';
-        },
-      },
-      '-=700'
-    )
+    //       fadeInBottomInvViewArray.forEach((element) => {
+    //         element.style.opacity = 0;
+    //       });
+    //     },
+    //     complete: () => {
+    //       enableScrolling();
+    //       const loader = document.getElementById('loader');
+    //       loader.style.display = 'none';
+    //     },
+    //   },
+    //   '-=700'
+    // )
     .add(
       {
         targets: '.h-first-line',
@@ -128,6 +175,28 @@ const loaderAnimation = () => {
     )
     .add(
       {
+        targets: '.h-portrait',
+        easing: 'easeInOutCubic',
+        opacity: [0, 1],
+        duration: 700,
+        begin: () => {
+          anime({
+            targets: '.h-portrait',
+            easing: 'linear',
+            loop: true,
+            keyframes: [
+              { translateY: 20, translateX: 20, duration: 700 },
+              { translateY: 40, translateX: 0, duration: 700 },
+              { translateY: 20, translateX: -20, duration: 700 },
+              { translateY: 0, translateX: 0, duration: 700 },
+            ],
+          });
+        },
+      },
+      '-=500'
+    )
+    .add(
+      {
         targets: '.fade-in-top',
         easing: 'easeInOutCubic',
         opacity: [0, 1],
@@ -138,22 +207,6 @@ const loaderAnimation = () => {
         },
       },
       '-=900'
-    )
-    .add(
-      {
-        targets: '.h-portrait',
-        easing: 'linear',
-        opacity: [0, 1],
-        keyframes: [
-          { translateY: -20, translateX: -20, duration: 500 },
-          { translateY: -40, translateX: 0, duration: 500 },
-          { translateY: -20, translateX: 20, duration: 400 },
-          { translateY: -1, translateX: -2, duration: 400 },
-          { translateY: -9, translateX: -15, duration: 400 },
-          { translateY: -15, translateX: 0, duration: 400 },
-        ],
-      },
-      '-=700'
     );
 };
 
@@ -296,10 +349,8 @@ const juniorPositionAnimation = () => {
 const horizontalProjectsScrolling = () => {
   let controller = new ScrollMagic.Controller();
 
-  // let tl2 = anime.timeline({ autoplay: false });
-
   let animation = anime({
-    targets: '#conten',
+    targets: '.project-main-container',
     easing: 'easeInOutCubic',
     translateX: [0, '-100%'],
     duration: 2000,
@@ -317,7 +368,7 @@ const horizontalProjectsScrolling = () => {
   });
 
   let scene = new ScrollMagic.Scene({
-    triggerElement: '#section',
+    triggerElement: '#projects-section-container',
     duration: 2000,
     triggerHook: 0,
   })
@@ -326,7 +377,7 @@ const horizontalProjectsScrolling = () => {
       animation.seek(animation.duration * event.progress);
     })
 
-    .setPin('#section')
+    .setPin('#projects-section-container')
     .addTo(controller);
 };
 
@@ -369,9 +420,13 @@ const openMenu = () => {
     opacity: [0, 1],
     translateX: [20, 0],
     delay: anime.stagger(200),
+    duration: 500,
     begin: () => {
       menuElement.classList.add('open');
       menuElement.style.display = 'block';
+    },
+    update: () => {
+      indexElement.onclick = 'null';
     },
   });
 };
@@ -383,9 +438,13 @@ const closeMenu = () => {
     opacity: 0,
     translateX: [0, 20],
     delay: anime.stagger(200),
+    duration: 500,
     complete: () => {
       menuElement.classList.remove('open');
       menuElement.style.display = 'none';
+    },
+    update: () => {
+      indexElement.onclick = 'null';
     },
   });
 };
