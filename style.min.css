@@ -87,6 +87,7 @@ li {
   font-family: "Apple Garamond";
   color: #e4f51a;
   text-decoration: none;
+  cursor: none;
 }
 
 input,
@@ -347,7 +348,13 @@ input[type="number"] {
           align-items: center;
 }
 
-.nav-bar .nav-left-side .open-for-job img {
+.nav-bar .nav-left-side .open-for-job .arrow-container {
+  overflow: hidden;
+  padding: 0 4px;
+  margin: 0 4px;
+}
+
+.nav-bar .nav-left-side .open-for-job .arrow-container img {
   height: 10px;
   margin: 0 5px;
 }
@@ -480,27 +487,35 @@ input[type="number"] {
 }
 
 #projects-section-container .project-overlay-container .project-main-container .project-photo-overlay .project-number {
-  position: absolute;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  top: 37%;
-  left: 50%;
   font-size: 22px;
   cursor: none;
   pointer-events: none;
 }
 
 #projects-section-container .project-overlay-container .project-main-container .project-photo-overlay .project-title {
-  position: absolute;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
-  top: 47%;
-  left: 50%;
   font-size: 32px;
   line-height: 92%;
   text-align: center;
   cursor: none;
   pointer-events: none;
+}
+
+.project-number-container,
+.project-title-container {
+  overflow: hidden;
+  position: absolute;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  left: 50%;
+  text-align: center;
+}
+
+.project-number-container {
+  top: 37%;
+}
+
+.project-title-container {
+  top: 47%;
 }
 
 .junior-position-container {

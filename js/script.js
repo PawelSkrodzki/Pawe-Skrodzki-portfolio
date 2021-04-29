@@ -2,8 +2,6 @@ const clockSpan = document.getElementById('time');
 const dateSpan = document.getElementById('date');
 const yearSpan = document.getElementById('year');
 
-const test = '1';
-
 showTime = () => {
   clockSpan.innerHTML = `${moment().format('h:mm')}`;
   dateSpan.innerHTML = `${moment().format('DD.MM')}`;
@@ -15,7 +13,7 @@ var options = {
   animate: true,
   patternWidth: 100,
   patternHeight: 100,
-  grainOpacity: 0.08,
+  grainOpacity: 0.15,
   grainDensity: 1,
   grainWidth: 1,
   grainHeight: 1,
@@ -45,9 +43,6 @@ const enableScrolling = () => {
 const cursor = document.querySelector('.cursor');
 const projectContainersCollection = document.querySelectorAll('.project-photo-overlay');
 const projectContainersArray = [].slice.call(projectContainersCollection);
-// const projectTitlesCollection = document.querySelectorAll('.project-number, .project-title');
-// const projectTitlesArray = [].slice.call(projectTitlesCollection);
-
 let posX = 0;
 let posY = 0;
 let mouseX = 0;
@@ -69,6 +64,10 @@ TweenMax.to({}, 0.016, {
 });
 
 document.addEventListener('mousemove', (e) => {
+  mouseX = e.pageX;
+  mouseY = e.pageY;
+});
+document.addEventListener('scroll', (e) => {
   mouseX = e.pageX;
   mouseY = e.pageY;
 });
@@ -187,9 +186,9 @@ const loaderAnimation = () => {
             easing: 'linear',
             loop: true,
             keyframes: [
-              { translateY: 20, translateX: 20, duration: 700 },
-              { translateY: 40, translateX: 0, duration: 700 },
-              { translateY: 20, translateX: -20, duration: 700 },
+              { translateY: 30, translateX: 20, duration: 700 },
+              { translateY: 60, translateX: 0, duration: 700 },
+              { translateY: 30, translateX: -20, duration: 700 },
               { translateY: 0, translateX: 0, duration: 700 },
             ],
           });
@@ -204,8 +203,22 @@ const loaderAnimation = () => {
         opacity: [0, 1],
         translateY: [20, 0],
         duration: 1000,
+        begin: () => {
+          document.querySelector('.arrow-container img').style.opacity = 0;
+        },
         complete: () => {
           fadeInBottomAnimation('.fadein-bottom-inview');
+
+          anime({
+            targets: '.arrow-container img',
+            easing: 'linear',
+            duration: 1200,
+            translateX: [-50, 50],
+            loop: true,
+            begin: () => {
+              document.querySelector('.arrow-container img').style.opacity = 1;
+            },
+          });
         },
       },
       '-=900'
@@ -262,6 +275,11 @@ const projectsAnimation = () => {
             { translateY: ['200%', 0], duration: 800 },
           ],
         })
+        // .add({
+        //   targets: '.project-text-fadein',
+        //   duration: 1000,
+        //   translateY: ['100%', 0],
+        // })
         .add(
           {
             targets: '.project-main-container',
