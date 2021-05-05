@@ -105,6 +105,10 @@ textarea {
   cursor: none;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 input:focus {
   outline: 0;
 }
@@ -433,7 +437,7 @@ input[type="number"] {
 }
 
 #projects-section-container {
-  margin-top: 128px;
+  margin: 128px 0 120px 0;
 }
 
 #projects-section-container .projects-h {
@@ -504,6 +508,7 @@ input[type="number"] {
           transform: translateX(-50%);
   left: 50%;
   text-align: center;
+  pointer-events: none;
 }
 
 .project-number-container {
@@ -515,7 +520,7 @@ input[type="number"] {
 }
 
 .junior-position-container {
-  margin: 120px auto 0 auto;
+  margin: 0 auto;
   padding: 0 15px;
   max-width: 390px;
 }
@@ -586,6 +591,10 @@ input[type="number"] {
 
 .footer p:last-of-type {
   margin-top: 10px;
+}
+
+.footer .studio-link {
+  z-index: 999;
 }
 
 @media (min-width: 768px) {

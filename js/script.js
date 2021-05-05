@@ -41,20 +41,16 @@ const enableScrolling = () => {
 // cursor functions
 
 const cursor = document.querySelector('.cursor');
-const cursorAnimobjectsCollection = document.querySelectorAll(
+const cursorAnimObjectsCollection = document.querySelectorAll(
   '.project-photo-overlay, .index-menu, .menu-item, .media, .studio-link'
 );
-const cursorAnimobjectsArray = [].slice.call(cursorAnimobjectsCollection);
+const cursorAnimObjectsArray = [].slice.call(cursorAnimObjectsCollection);
 
 document.addEventListener('mousemove', (e) => {
   cursor.setAttribute('style', 'top: ' + (e.clientY - 4) + 'px; left: ' + (e.clientX - 4) + 'px;');
 });
-document.addEventListener('scroll', (e) => {
-  mouseX = e.pageX;
-  mouseY = e.pageY;
-});
 
-cursorAnimobjectsArray.forEach((container) => {
+cursorAnimObjectsArray.forEach((container) => {
   container.addEventListener('mouseenter', () => {
     cursor.classList.add('active');
   });
@@ -232,6 +228,41 @@ const fadeInBottomAnimation = (elementsClass) => {
   });
 };
 
+const horizontalProjectsScrolling = () => {
+  let controller = new ScrollMagic.Controller();
+
+  let animation = anime({
+    targets: '.project-main-container',
+    easing: 'easeInOutCubic',
+    translateX: [0, '-100%'],
+    duration: 2000,
+    delay: 0,
+    autoplay: false,
+    complete: () => {
+      photosTrigger = document.querySelector('.photos-container');
+      mediaTrigger = document.querySelector('.media-list');
+
+      groupFadeInBottomAnimation(photosTrigger, '.single-photo');
+      groupFadeInBottomAnimation(mediaTrigger, '.media');
+
+      fadeInBottomAnimation('.footer-fadein-bottom');
+    },
+  });
+
+  let scene = new ScrollMagic.Scene({
+    triggerElement: '#projects-section-container',
+    duration: 2000,
+    triggerHook: 0,
+  })
+
+    .on('progress', function (event) {
+      animation.seek(animation.duration * event.progress);
+    })
+
+    .setPin('#projects-section-container')
+    .addTo(controller);
+};
+
 const projectsAnimationTrigger = document.querySelector('.projects-timeline');
 const projectsContainer = document.querySelector('.project-main-container');
 
@@ -299,12 +330,6 @@ const juniorPositionAnimation = () => {
           targets: '.position-h',
           translateY: 0,
           duration: 1000,
-          delay: 1000,
-        })
-        .add({
-          targets: '.position-h',
-          translateY: 0,
-          duration: 1000,
         })
         .add(
           {
@@ -340,43 +365,8 @@ const juniorPositionAnimation = () => {
         );
       this.destroy();
     },
-    offset: '20%',
+    offset: '80%',
   });
-};
-
-const horizontalProjectsScrolling = () => {
-  let controller = new ScrollMagic.Controller();
-
-  let animation = anime({
-    targets: '.project-main-container',
-    easing: 'easeInOutCubic',
-    translateX: [0, '-100%'],
-    duration: 2000,
-    delay: 0,
-    autoplay: false,
-    complete: () => {
-      photosTrigger = document.querySelector('.photos-container');
-      mediaTrigger = document.querySelector('.media-list');
-
-      groupFadeInBottomAnimation(photosTrigger, '.single-photo');
-      groupFadeInBottomAnimation(mediaTrigger, '.media');
-
-      fadeInBottomAnimation('.footer-fadein-bottom');
-    },
-  });
-
-  let scene = new ScrollMagic.Scene({
-    triggerElement: '#projects-section-container',
-    duration: 2000,
-    triggerHook: 0,
-  })
-
-    .on('progress', function (event) {
-      animation.seek(animation.duration * event.progress);
-    })
-
-    .setPin('#projects-section-container')
-    .addTo(controller);
 };
 
 juniorPositionAnimation();
@@ -456,61 +446,3 @@ indexElement.addEventListener('click', () => {
     closeMenu();
   }
 });
-
-// zapasowy kod animacji loadera
-
-// const img1 = document.getElementById('loader-img1');
-// const img2 = document.getElementById('loader-img2');
-// const img3 = document.getElementById('loader-img3');
-// const img4 = document.getElementById('loader-img4');
-// const img5 = document.getElementById('loader-img5');
-// const img6 = document.getElementById('loader-img6');
-// const img7 = document.getElementById('loader-img7');
-// const img8 = document.getElementById('loader-img8');
-// const img9 = document.getElementById('loader-img9');
-// const img10 = document.getElementById('loader-img10');
-// const img11 = document.getElementById('loader-img11');
-
-// imgArray1 = [img1, img2, img3, img4];
-// imgArray2 = [img5, img6, img7, img8, img9, img10, img11];
-
-// imgArray1.forEach((img) => {
-//   img.style.opacity = 0;
-// });
-
-// imgArray2.forEach((img) => {
-//   img.style.opacity = 0;
-// });
-
-// anime({
-//   targets: imgArray1,
-//   opacity: 1,
-//   duration: 1000,
-//   delay: anime.stagger(250, { start: 300 }),
-//   endDelay: -800,
-//   begin: () => {
-//     anime({
-//       targets: '.counter',
-//       value: [1, 100],
-//       duration: 4000,
-//       easing: 'easeInOutCubic',
-//       round: 1,
-//     });
-//   },
-//   complete: () => {
-//     anime({
-//       targets: imgArray2,
-//       opacity: 1,
-//       duration: 1000,
-//       delay: anime.stagger(250),
-//       endDelay: -650,
-//       loop: 1,
-//       complete: () => {
-//         anime({
-//           targets: imgArray2,
-//           opacity: 0,
-//         });
-//       },
-//     });
-//   },
-// });
