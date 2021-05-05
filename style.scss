@@ -24,13 +24,12 @@ body {
 // cursor styles
 
 .cursor {
-    position: absolute;
+    position: fixed;
     background-color: #e4f51a;
     width: 8px;
     height: 8px;
     border-radius: 100%;
-    z-index: 10;
-    transition: 0.5s; //ewentualnie edytować
+    z-index: 10; //ewentualnie edytować
     user-select: none;
     pointer-events: none;
     transform: scale(0.8);
@@ -46,7 +45,6 @@ body {
     top: 10px;
     left: 0;
     display: block;
-    // background-image: url("http://mirkozeppieri.emanuelepapale.com/wp-content/uploads/2018/07/project-hover-cursor.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -85,6 +83,7 @@ li {
     font-family: "Apple Garamond";
     color: #e4f51a;
     text-decoration: none;
+    cursor: none;
 }
 
 input,
@@ -465,7 +464,6 @@ input[type="number"] {
                 img {
                     height: 380px;
                     transition: transform 0.6s;
-                    transition-delay: 0.5s;
                 }
 
                 .project-number {

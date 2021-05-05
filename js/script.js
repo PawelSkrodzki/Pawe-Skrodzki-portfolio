@@ -2,8 +2,6 @@ const clockSpan = document.getElementById('time');
 const dateSpan = document.getElementById('date');
 const yearSpan = document.getElementById('year');
 
-const test = '1';
-
 showTime = () => {
   clockSpan.innerHTML = `${moment().format('h:mm')}`;
   dateSpan.innerHTML = `${moment().format('DD.MM')}`;
@@ -43,47 +41,22 @@ const enableScrolling = () => {
 // cursor functions
 
 const cursor = document.querySelector('.cursor');
-const projectContainersCollection = document.querySelectorAll('.project-photo-overlay');
-const projectContainersArray = [].slice.call(projectContainersCollection);
-// const projectTitlesCollection = document.querySelectorAll('.project-number, .project-title');
-// const projectTitlesArray = [].slice.call(projectTitlesCollection);
-
-let posX = 0;
-let posY = 0;
-let mouseX = 0;
-let mouseY = 0;
-
-TweenMax.to({}, 0.016, {
-  repeat: -1,
-  onRepeat: () => {
-    posX += (mouseX - posX) / 9;
-    posY += (mouseY - posY) / 9;
-
-    TweenMax.set(cursor, {
-      css: {
-        left: mouseX,
-        top: mouseY,
-      },
-    });
-  },
-});
+const cursorAnimobjectsCollection = document.querySelectorAll(
+  '.project-photo-overlay, .index-menu, .menu-item, .media, .studio-link'
+);
+const cursorAnimobjectsArray = [].slice.call(cursorAnimobjectsCollection);
 
 document.addEventListener('mousemove', (e) => {
-  mouseX = e.pageX;
-  mouseY = e.pageY;
+  cursor.setAttribute('style', 'top: ' + (e.clientY - 4) + 'px; left: ' + (e.clientX - 4) + 'px;');
 });
 
-projectContainersArray.forEach((container) => {
+cursorAnimobjectsArray.forEach((container) => {
   container.addEventListener('mouseenter', () => {
-    setTimeout(() => {
-      cursor.classList.add('active');
-    }, 500);
+    cursor.classList.add('active');
   });
 
   container.addEventListener('mouseout', () => {
-    setTimeout(() => {
-      cursor.classList.remove('active');
-    }, 500);
+    cursor.classList.remove('active');
   });
 });
 
