@@ -357,9 +357,15 @@ input[type="number"] {
             flex-direction: row;
             align-items: center;
 
-            img {
-                height: 10px;
-                margin: 0 5px;
+            .arrow-container {
+                overflow: hidden;
+                padding: 0 4px;
+                margin: 0 4px;
+
+                img {
+                    height: 10px;
+                    margin: 0 5px;
+                }
             }
         }
     }
@@ -467,20 +473,20 @@ input[type="number"] {
                 }
 
                 .project-number {
-                    position: absolute;
-                    transform: translateX(-50%);
-                    top: 37%;
-                    left: 50%;
+                    // position: absolute;
+                    // transform: translate(-50%, 0);
+                    // top: 37%;
+                    // left: 50%;
                     font-size: 22px;
                     cursor: none;
                     pointer-events: none;
                 }
 
                 .project-title {
-                    position: absolute;
-                    transform: translateX(-50%);
-                    top: 47%;
-                    left: 50%;
+                    // position: absolute;
+                    // transform: translate(-50%, 0);
+                    // top: 47%;
+                    // left: 50%;
                     font-size: 32px;
                     line-height: 92%;
                     text-align: center;
@@ -490,6 +496,23 @@ input[type="number"] {
             }
         }
     }
+}
+//ogarnac zagniezdzena
+.project-number-container,
+.project-title-container {
+    overflow: hidden;
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    text-align: center;
+}
+
+.project-number-container {
+    top: 37%;
+}
+
+.project-title-container {
+    top: 47%;
 }
 
 .junior-position-container {

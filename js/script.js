@@ -13,7 +13,7 @@ var options = {
   animate: true,
   patternWidth: 100,
   patternHeight: 100,
-  grainOpacity: 0.08,
+  grainOpacity: 0.15,
   grainDensity: 1,
   grainWidth: 1,
   grainHeight: 1,
@@ -48,6 +48,10 @@ const cursorAnimobjectsArray = [].slice.call(cursorAnimobjectsCollection);
 
 document.addEventListener('mousemove', (e) => {
   cursor.setAttribute('style', 'top: ' + (e.clientY - 4) + 'px; left: ' + (e.clientX - 4) + 'px;');
+});
+document.addEventListener('scroll', (e) => {
+  mouseX = e.pageX;
+  mouseY = e.pageY;
 });
 
 cursorAnimobjectsArray.forEach((container) => {
@@ -160,9 +164,9 @@ const loaderAnimation = () => {
             easing: 'linear',
             loop: true,
             keyframes: [
-              { translateY: 20, translateX: 20, duration: 700 },
-              { translateY: 40, translateX: 0, duration: 700 },
-              { translateY: 20, translateX: -20, duration: 700 },
+              { translateY: 30, translateX: 20, duration: 700 },
+              { translateY: 60, translateX: 0, duration: 700 },
+              { translateY: 30, translateX: -20, duration: 700 },
               { translateY: 0, translateX: 0, duration: 700 },
             ],
           });
@@ -177,8 +181,22 @@ const loaderAnimation = () => {
         opacity: [0, 1],
         translateY: [20, 0],
         duration: 1000,
+        begin: () => {
+          document.querySelector('.arrow-container img').style.opacity = 0;
+        },
         complete: () => {
           fadeInBottomAnimation('.fadein-bottom-inview');
+
+          anime({
+            targets: '.arrow-container img',
+            easing: 'linear',
+            duration: 1200,
+            translateX: [-50, 50],
+            loop: true,
+            begin: () => {
+              document.querySelector('.arrow-container img').style.opacity = 1;
+            },
+          });
         },
       },
       '-=900'
@@ -235,6 +253,11 @@ const projectsAnimation = () => {
             { translateY: ['200%', 0], duration: 800 },
           ],
         })
+        // .add({
+        //   targets: '.project-text-fadein',
+        //   duration: 1000,
+        //   translateY: ['100%', 0],
+        // })
         .add(
           {
             targets: '.project-main-container',
