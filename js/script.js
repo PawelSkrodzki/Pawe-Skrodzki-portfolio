@@ -13,7 +13,7 @@ var options = {
   animate: true,
   patternWidth: 100,
   patternHeight: 100,
-  grainOpacity: 0.15,
+  grainOpacity: 0.05,
   grainDensity: 1,
   grainWidth: 1,
   grainHeight: 1,
@@ -200,6 +200,25 @@ const loaderAnimation = () => {
 };
 
 loaderAnimation();
+
+// lottie animations objects
+
+const svgHireMeContainer = document.querySelector('.hire-svg-container');
+const animItem = bodymovin.loadAnimation({
+  wrapper: svgHireMeContainer,
+  animType: 'svg',
+  loop: false,
+  autoplay: false,
+  path: 'https://assets4.lottiefiles.com/packages/lf20_mfrfvwlq.json',
+});
+
+new Waypoint({
+  element: svgHireMeContainer,
+  handler: function () {
+    animItem.play();
+  },
+  offset: '75%',
+});
 
 // rest of animations
 

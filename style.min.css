@@ -361,6 +361,14 @@ input[type="number"] {
   margin: 0 5px;
 }
 
+.nav-bar .nav-left-side .open-for-job .hire-me-button {
+  position: relative;
+}
+
+.nav-bar .nav-left-side .open-for-job .hire-me-button svg {
+  position: absolute;
+}
+
 .nav-bar .nav-left-side > * {
   margin-bottom: 14px;
 }
