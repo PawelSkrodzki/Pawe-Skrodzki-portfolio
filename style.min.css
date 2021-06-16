@@ -384,8 +384,12 @@ input[type="number"] {
   display: none;
 }
 
-.nav-bar .index-container .menu li {
+.nav-bar .index-container li {
   padding: 5px 0 5px 0;
+}
+
+.nav-bar .index-container li .menu-project-title {
+  margin-right: 5px;
 }
 
 .h-first-line {
@@ -813,6 +817,10 @@ input[type="number"] {
   }
   .footer p:last-of-type {
     width: 400px;
+  }
+  .footer div img {
+    width: 20px;
+    height: 20px;
   }
 }
 /*# sourceMappingURL=style.min.css.map */

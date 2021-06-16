@@ -13,7 +13,7 @@ var options = {
   animate: true,
   patternWidth: 100,
   patternHeight: 100,
-  grainOpacity: 0.05,
+  grainOpacity: 0.08,
   grainDensity: 1,
   grainWidth: 1,
   grainHeight: 1,
@@ -42,7 +42,7 @@ const enableScrolling = () => {
 
 const cursor = document.querySelector('.cursor');
 const cursorAnimObjectsCollection = document.querySelectorAll(
-  '.project-photo-overlay, .index-menu, .menu-item, .media, .studio-link'
+  '.project-photo-overlay, .index-menu, .menu-item, .media, .studio-link '
 );
 const cursorAnimObjectsArray = [].slice.call(cursorAnimObjectsCollection);
 
@@ -260,10 +260,8 @@ const horizontalProjectsScrolling = () => {
     complete: () => {
       photosTrigger = document.querySelector('.photos-container');
       mediaTrigger = document.querySelector('.media-list');
-
       groupFadeInBottomAnimation(photosTrigger, '.single-photo');
       groupFadeInBottomAnimation(mediaTrigger, '.media');
-
       fadeInBottomAnimation('.footer-fadein-bottom');
     },
   });
@@ -303,11 +301,6 @@ const projectsAnimation = () => {
             { translateY: ['200%', 0], duration: 800 },
           ],
         })
-        // .add({
-        //   targets: '.project-text-fadein',
-        //   duration: 1000,
-        //   translateY: ['100%', 0],
-        // })
         .add(
           {
             targets: '.project-main-container',

@@ -328,8 +328,12 @@ input[type="number"] {
         .open {
         }
 
-        .menu li {
+        & li {
             padding: 5px 0 5px 0;
+
+            .menu-project-title {
+                margin-right: 5px;
+            }
         }
     }
 }
@@ -760,6 +764,11 @@ input[type="number"] {
     .footer {
         p:last-of-type {
             width: 400px;
+        }
+
+        div img {
+            width: 20px;
+            height: 20px;
         }
     }
 }
