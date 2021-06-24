@@ -54,8 +54,6 @@ body {
 
 .cursor.active {
     opacity: 1;
-    // background-color: transparent;
-    // transform: scale(12);
 }
 
 .cursor.active::before {
@@ -93,7 +91,6 @@ button,
 textarea {
     margin: 0;
     border: 0;
-    // padding: 10px 20px;
     display: inline-block;
     vertical-align: middle;
     white-space: normal;
@@ -275,6 +272,11 @@ input[type="number"] {
     height: 100%;
     padding: 87px 15px 47px 15px;
     overflow-x: hidden;
+    z-index: 100;
+}
+
+.main-container > * {
+    position: relative;
 }
 
 .nav-bar {
@@ -323,9 +325,6 @@ input[type="number"] {
             top: 30px;
             list-style-type: none;
             display: none;
-        }
-
-        .open {
         }
 
         & li {
@@ -519,11 +518,16 @@ input[type="number"] {
 .footer {
     margin-top: 250px;
 
-    p:last-of-type {
+    .footer-link-container {
         margin-top: 10px;
+
+        img {
+            margin: 0 5px;
+        }
     }
+
     .studio-link {
-        z-index: 999;
+        z-index: 1999;
     }
 }
 
@@ -597,7 +601,7 @@ input[type="number"] {
         display: flex;
         justify-content: space-between;
 
-        p:last-of-type {
+        .footer-link-container {
             margin-top: 0;
             width: 310px;
         }
@@ -678,7 +682,7 @@ input[type="number"] {
     }
 
     .footer {
-        p:last-of-type {
+        .footer-link-container {
             width: 340px;
         }
     }
@@ -762,13 +766,8 @@ input[type="number"] {
     }
 
     .footer {
-        p:last-of-type {
+        .footer-link-container {
             width: 400px;
-        }
-
-        div img {
-            width: 20px;
-            height: 20px;
         }
     }
 }

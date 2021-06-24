@@ -9,6 +9,8 @@ showTime = () => {
 };
 setInterval(showTime, 1000);
 
+//  background animation
+
 var options = {
   animate: true,
   patternWidth: 100,
@@ -18,8 +20,6 @@ var options = {
   grainWidth: 1,
   grainHeight: 1,
 };
-
-//  background animation
 
 grained('#main-grained', options);
 grained('#loader-grained', options);
