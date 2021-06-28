@@ -33,6 +33,7 @@ body {
     user-select: none;
     pointer-events: none;
     transform: scale(0.8);
+    z-index: 999;
 }
 
 .cursor::before {
@@ -504,11 +505,11 @@ input[type="number"] {
             max-width: 248px;
         }
 
-        ul {
+        .media-list {
             margin-top: 32px;
             list-style-type: none;
 
-            li {
+            .media {
                 margin-bottom: 10px;
             }
         }
@@ -526,8 +527,8 @@ input[type="number"] {
         }
     }
 
-    .studio-link {
-        z-index: 1999;
+    .studio-link img {
+        z-index: -1;
     }
 }
 

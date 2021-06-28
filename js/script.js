@@ -42,7 +42,7 @@ const enableScrolling = () => {
 
 const cursor = document.querySelector('.cursor');
 const cursorAnimObjectsCollection = document.querySelectorAll(
-  '.project-photo-overlay, .index-menu, .menu-item, .media, .studio-link '
+  '.project-photo-overlay, .index-menu, .menu-item, .media-link span, .media-link img , .studio-link span, .studio-link img '
 );
 const cursorAnimObjectsArray = [].slice.call(cursorAnimObjectsCollection);
 
@@ -247,9 +247,20 @@ const fadeInBottomAnimation = (elementsClass) => {
   });
 };
 
-const horizontalProjectsScrolling = () => {
-  let controller = new ScrollMagic.Controller();
+photosTrigger = document.querySelector('.photos-container');
+mediaTrigger = document.querySelector('.media-list');
 
+let controller = new ScrollMagic.Controller();
+let scene = new ScrollMagic.Scene({
+  triggerElement: '#projects-section-container',
+  duration: 2000,
+  triggerHook: 0,
+})
+
+  .setPin('#projects-section-container')
+  .addTo(controller);
+
+const horizontalProjectsScrolling = () => {
   let animation = anime({
     targets: '.project-main-container',
     easing: 'easeInOutCubic',
@@ -257,27 +268,19 @@ const horizontalProjectsScrolling = () => {
     duration: 2000,
     delay: 0,
     autoplay: false,
+    begin: (e) => {
+      e.preventDefault();
+    },
     complete: () => {
-      photosTrigger = document.querySelector('.photos-container');
-      mediaTrigger = document.querySelector('.media-list');
       groupFadeInBottomAnimation(photosTrigger, '.single-photo');
       groupFadeInBottomAnimation(mediaTrigger, '.media');
       fadeInBottomAnimation('.footer-fadein-bottom');
     },
   });
 
-  let scene = new ScrollMagic.Scene({
-    triggerElement: '#projects-section-container',
-    duration: 2000,
-    triggerHook: 0,
-  })
-
-    .on('progress', function (event) {
-      animation.seek(animation.duration * event.progress);
-    })
-
-    .setPin('#projects-section-container')
-    .addTo(controller);
+  scene.on('progress', function (event) {
+    animation.seek(animation.duration * event.progress);
+  });
 };
 
 const projectsAnimationTrigger = document.querySelector('.projects-timeline');
