@@ -3,6 +3,37 @@
     src: url("font/AppleGaramond-Light.ttf");
 }
 
+.hire-me-container {
+    height: 20px;
+    padding: 5px;
+    width: 150px;
+    position: relative;
+}
+
+.hire-me {
+    position: absolute;
+    top: -50px;
+    left: 0px;
+    width: 140px;
+    height: 120px;
+}
+.contact-me-container {
+    display: block;
+    height: 40px;
+    width: 180px;
+    margin: 0 auto;
+    position: relative;
+    background-color: red;
+}
+
+.contact-me {
+    position: absolute;
+    top: -50px;
+    left: 0px;
+    width: 180px;
+    height: 140px;
+}
+
 html * {
     margin: 0;
     padding: 0;
@@ -472,7 +503,7 @@ input[type="number"] {
 
     .last-h-container {
         p {
-            margin: 16px auto 0 auto;
+            margin: 16px auto 50px auto;
             max-width: 248px;
         }
 
@@ -672,7 +703,7 @@ input[type="number"] {
             }
 
             p {
-                margin: 30px 0 0 20px;
+                margin: 30px 0 50px 20px;
                 max-width: 248px;
             }
         }
@@ -728,7 +759,7 @@ input[type="number"] {
 
         .last-h-container {
             p {
-                margin: 40px 0 0 20px;
+                margin: 40px 0 50px 20px;
             }
         }
     }

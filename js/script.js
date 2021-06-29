@@ -203,21 +203,55 @@ loaderAnimation();
 
 // lottie animations objects
 
-const svgHireMeContainer = document.querySelector('.hire-svg-container');
-const animItem = bodymovin.loadAnimation({
-  wrapper: svgHireMeContainer,
+const svgHireMe = document.querySelector('.hire-svg');
+const svgHireMeContainer = document.querySelector('.hire-me-container');
+
+const hireMeAnim = bodymovin.loadAnimation({
+  wrapper: svgHireMe,
   animType: 'svg',
   loop: false,
   autoplay: false,
-  path: 'https://assets4.lottiefiles.com/packages/lf20_mfrfvwlq.json',
+  // path: 'https://assets3.lottiefiles.com/packages/lf20_c47tkgvl.json',
+  path: 'https://assets5.lottiefiles.com/packages/lf20_3doegq7p.json',
 });
 
-new Waypoint({
-  element: svgHireMeContainer,
-  handler: function () {
-    animItem.play();
-  },
-  offset: '75%',
+// hireMeAnim.goToAndStop(89, true);
+
+svgHireMeContainer.addEventListener('mouseover', () => {
+  const currentFrame = hireMeAnim.currentFrame;
+  hireMeAnim.setDirection(1);
+  hireMeAnim.goToAndPlay(currentFrame, true);
+});
+
+svgHireMeContainer.addEventListener('mouseout', () => {
+  const currentFrame = hireMeAnim.currentFrame;
+  hireMeAnim.setDirection(-1);
+  hireMeAnim.goToAndPlay(currentFrame, true);
+});
+
+const svgContactMe = document.querySelector('.contact-svg');
+const svgContactMeContainer = document.querySelector('.contact-me-container');
+
+const contactMeAnim = bodymovin.loadAnimation({
+  wrapper: svgContactMe,
+  animType: 'svg',
+  loop: false,
+  autoplay: false,
+  path: 'https://assets3.lottiefiles.com/packages/lf20_c47tkgvl.json',
+});
+
+// contactMeAnim.goToAndStop(89, true);
+
+svgContactMeContainer.addEventListener('mouseover', () => {
+  const currentFrame = contactMeAnim.currentFrame;
+  contactMeAnim.setDirection(1);
+  contactMeAnim.goToAndPlay(currentFrame, true);
+});
+
+svgContactMeContainer.addEventListener('mouseout', () => {
+  const currentFrame = contactMeAnim.currentFrame;
+  contactMeAnim.setDirection(-1);
+  contactMeAnim.goToAndPlay(currentFrame, true);
 });
 
 // rest of animations
@@ -268,9 +302,10 @@ const horizontalProjectsScrolling = () => {
     duration: 2000,
     delay: 0,
     autoplay: false,
-    begin: (e) => {
-      e.preventDefault();
-    },
+    // check is it works without function below
+    // begin: (e) => {
+    //   e.preventDefault();
+    // },
     complete: () => {
       groupFadeInBottomAnimation(photosTrigger, '.single-photo');
       groupFadeInBottomAnimation(mediaTrigger, '.media');
@@ -372,7 +407,7 @@ const juniorPositionAnimation = () => {
         )
         .add(
           {
-            targets: '.position-p',
+            targets: '.position-anim-last',
             opacity: [0, 1],
             translateY: [100, 0],
           },
