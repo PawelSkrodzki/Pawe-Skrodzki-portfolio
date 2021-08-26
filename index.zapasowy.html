@@ -12,7 +12,7 @@
 <body>
     <div class="cursor"></div>
 
-    <!-- <div id="loader">
+    <div id="loader">
         <div id="loader-grained">
             <div class="loader-content">
                 <div id="loader-images">
@@ -36,12 +36,12 @@
                         for="counter">%</label></span>
             </div>
         </div>
-    </div> -->
-    <div data-scroll-container class="main-container" id="main-grained">
+    </div>
+    <div class="main-container" id="main-grained">
 
-        <div class="grained">
-            <nav class="nav-bar fadein-bottom-start" data-scroll data-scroll-class="fadein-bottom-finish">
-                <div class="nav-left-side">
+        <div data-scroll-container class="grained">
+            <nav class="nav-bar">
+                <div class="nav-left-side fade-in-top">
                     <p>Warsaw <span id="time"></span> / <span id="date"></span></p>
                     <div class="open-for-job">
                         <p>open for a job</p>
@@ -54,7 +54,7 @@
                     </div>
                 </div>
                 <div class="index-container">
-                    <p class="index-menu">index</p>
+                    <p class="fade-in-top index-menu">index</p>
                     <ul class="menu">
                         <li class="menu-item"><span class="menu-project-title">Kaswen-Wilk</span><img
                                 src="img/arrow-small.svg">
@@ -81,9 +81,7 @@
             </div>
 
             <div class="p-section">
-                <p class="first-p fadein-bottom-start" data-scroll data-scroll-class="fadein-bottom-finish">Hi! My name
-                    is Paweł and I
-                    want to become a Frontent-Developer.
+                <p class="first-p fadein-bottom-inview">Hi! My name is Paweł and I want to become a Frontent-Developer.
                     In 2021 I have finished Information Technology Management studies on Warsaw School of Information
                     Technology. Now I’m focused on improving my programming skills and
                     executing projects such as landing pages and small shops as a freelancer. My dream is to create
@@ -94,91 +92,57 @@
                 </p>
 
                 <div class="p-photo-container">
-                    <img class="fadein-bottom-start" data-scroll data-scroll-class="fadein-bottom-finish"
-                        data-scroll-offset="100" src="img/pic-2.png" alt='Pic'>
-                    <p class="fadein-bottom-start" data-scroll data-scroll-class="fadein-bottom-finish"
-                        data-scroll-offset="100">In my
-                        free time I enjoy cycling, skateboarding and freestyle skiing.
+                    <img class="fadein-bottom-inview" src="img/pic-2.png" alt='Pic'>
+                    <p class="fadein-bottom-inview">In my free time I enjoy cycling, skateboarding and freestyle skiing.
                         My ambition is to find small software development
                         company where I would have opportunity to develop my competency during creative and eventful
                         projects.</p>
                 </div>
             </div>
-            <!-- <div id="scrolltop-prevent-div">
-                <div id="projects-section-container" class="projects-section-container">
-                    <h2 class="projects-h projects-timeline fadein-top-start" data-scroll
-                        data-scroll-class="fadein-top-finish" data-scroll-offset="100">Selected projects</h2>
+            <div id="scrolltop-prevent-div">
+                <div id="projects-section-container">
+                    <h2 class="projects-h projects-timeline">Selected projects</h2>
                     <div class="project-overlay-container">
                         <div class="project-main-container">
-                            <h2 class="projects-h projects-timeline fadein-top-start" data-scroll
-                                data-scroll-class="fadein-top-finish" data-scroll-offset="100">Selected projects</h2>
                             <div class="project-photo-overlay">
                                 <img src="img/pic3.png">
-                                <div class="project-number-container"><a class="project-number" href="#">01</a></div>
-                                <div class="project-title-container"><a class="project-title" href="#">Katarzyna <br>
+                                <div class="project-number-container"><a class="project-number project-text-fadein"
+                                        href="#">01</a></div>
+                                <div class="project-title-container"><a class="project-title project-text-fadein"
+                                        href="#">Katarzyna <br>
                                         Kaswen-Wilk</a></div>
                             </div>
                             <div class="project-photo-overlay">
                                 <img src="img/pic3.png">
                                 <div class="project-number-container"><a class="project-number" href="#">01</a></div>
-                                <div class="project-title-container"><a class="project-title" href="#">Katarzyna <br>
+                                <div class="project-title-container"><a class="project-title project-text-fadein"
+                                        href="#">Katarzyna <br>
                                         Kaswen-Wilk</a></div>
                             </div>
                             <div class="project-photo-overlay">
                                 <img src="img/pic3.png">
                                 <div class="project-number-container"><a class="project-number" href="#">01</a></div>
-                                <div class="project-title-container"><a class="project-title" href="#">Katarzyna <br>
+                                <div class="project-title-container"><a class="project-title project-text-fadein"
+                                        href="#">Katarzyna <br>
                                         Kaswen-Wilk</a></div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div> -->
-            <div id="projects-section-container" class="projects-section-container">
-                <div class="project-main-container">
-                    <h2 class="projects-h projects-timeline fadein-top-start" data-scroll
-                        data-scroll-class="fadein-top-finish" data-scroll-offset="100">Selected projects</h2>
-                    <div class="project-photo-overlay photo-stagger-start" data-scroll
-                        data-scroll-class="photo-stagger-finish" data-scroll-offset="200">
-                        <img src="img/pic3.png">
-                        <div class="project-number-container"><a class="project-number" href="#">01</a></div>
-                        <div class="project-title-container"><a class="project-title" href="#">Katarzyna <br>
-                                Kaswen-Wilk</a></div>
-                    </div>
-                    <div class="project-photo-overlay photo-stagger-start" data-scroll
-                        data-scroll-class="photo-stagger-finish" data-scroll-offset="200">
-                        <img src="img/pic3.png">
-                        <div class="project-number-container"><a class="project-number" href="#">01</a></div>
-                        <div class="project-title-container"><a class="project-title" href="#">Katarzyna <br>
-                                Kaswen-Wilk</a></div>
-                    </div>
-                    <div class="project-photo-overlay photo-stagger-start" data-scroll
-                        data-scroll-class="photo-stagger-finish" data-scroll-offset="200">
-                        <img src="img/pic3.png">
-                        <div class="project-number-container"><a class="project-number" href="#">01</a></div>
-                        <div class="project-title-container"><a class="project-title" href="#">Katarzyna <br>
-                                Kaswen-Wilk</a></div>
-                    </div>
-                </div>
             </div>
 
             <div class="junior-position-container">
-                <div class="position-h-overlay position-h-overlay-1 fadein-left-start" data-scroll
-                    data-scroll-class="fadein-left-finish" data-scroll-offset="200">
-                    <h2 class="position-h">
-                        open</h2>
+                <div class="position-h-overlay position-h-overlay-1">
+                    <h2 class="position-h">open</h2>
                 </div>
-                <div class="position-h-overlay position-h-overlay-2 fadein-right-start" data-scroll
-                    data-scroll-class="fadein-right-finish" data-scroll-offset="200">
+                <div class="position-h-overlay position-h-overlay-2">
                     <h2 class="h-right position-h">for a junor</h2>
                 </div>
                 <div class="last-h-container">
-                    <div class="position-h-overlay position-h-overlay-3 fadein-left-start" data-scroll
-                        data-scroll-class="fadein-left-finish" data-scroll-offset="200">
+                    <div class="position-h-overlay position-h-overlay-3">
                         <h2 class="position-h">position</h2>
                     </div>
-                    <div class='fadein-bottom-start' data-scroll data-scroll-class="fadein-bottom-finish"
-                        data-scroll-offset="250">
+                    <div class='position-anim-last'>
                         <p class='position-p'>I’m looking for a place where I would learn new
                             technologies and
                             improve that ones I already know.
@@ -191,42 +155,32 @@
                 </div>
             </div>
 
-            <div class="photos-container" data-scroll data-scroll-call="testowa()">
-                <img class="single-photo photo-stagger-start" data-scroll data-scroll-class="photo-stagger-finish"
-                    data-scroll-offset="200" src="img/Zrzut ekranu 2021-03-24 o 17.31.34 5.png" alt="pic">
-                <img class="single-photo photo-stagger-start" data-scroll data-scroll-class="photo-stagger-finish"
-                    data-scroll-offset="200" src="img/Zrzut ekranu 2021-03-24 o 17.31.34 5.png" alt="pic">
-                <img class="single-photo photo-stagger-start" data-scroll data-scroll-class="photo-stagger-finish"
-                    data-scroll-offset="200" src="img/Zrzut ekranu 2021-03-24 o 17.31.34 5.png" alt="pic">
-                <img class="single-photo photo-stagger-start" data-scroll data-scroll-class="photo-stagger-finish"
-                    data-scroll-offset="200" src="img/Zrzut ekranu 2021-03-24 o 17.31.34 5.png" alt="pic">
-                <img class="single-photo photo-stagger-start" data-scroll data-scroll-class="photo-stagger-finish"
-                    data-scroll-offset="200" src="img/Zrzut ekranu 2021-03-24 o 17.31.34 5.png" alt="pic">
+            <div class="photos-container">
+                <img class="single-photo" src="img/Zrzut ekranu 2021-03-24 o 17.31.34 5.png" alt="pic">
+                <img class="single-photo" src="img/Zrzut ekranu 2021-03-24 o 17.31.34 5.png" alt="pic">
+                <img class="single-photo" src="img/Zrzut ekranu 2021-03-24 o 17.31.34 5.png" alt="pic">
+                <img class="single-photo" src="img/Zrzut ekranu 2021-03-24 o 17.31.34 5.png" alt="pic">
+                <img class="single-photo" src="img/Zrzut ekranu 2021-03-24 o 17.31.34 5.png" alt="pic">
             </div>
             <div class="contact-container">
-                <h2 class='fadein-bottom-start' data-scroll data-scroll-class="fadein-bottom-finish"
-                    data-scroll-offset="200">Contact me</h2>
+                <h2 class="footer-fadein-bottom">Contact me</h2>
                 <div>
-                    <p class='fadein-bottom-start' data-scroll data-scroll-class="fadein-bottom-finish"
-                        data-scroll-offset="200">I have finished some real projects but also did many “easy” tasks
+                    <p class="footer-fadein-bottom">I have finished some real projects but also did many “easy” tasks
                         for training. Check my work and if you like it let me know!</p>
                     <ul class="media-list">
-                        <li class="media single-media" data-scroll data-scroll-class="single-media-finish"
-                            data-scroll-offset="200">
+                        <li class="media">
                             <a target="_blank" class="media-link"
                                 href="mailto: pawel.skrodzki14@gmail.com"><span>Email</span>
                                 <img src='img/Arrow short.svg'>
                             </a>
                         </li>
-                        <li class="media single-media" data-scroll data-scroll-class="single-media-finish"
-                            data-scroll-offset="200">
+                        <li class="media">
                             <a target="_blank" class="media-link"
                                 href="https://github.com/PawelSkrodzki"><span>Github</span>
                                 <img src='img/Arrow short.svg'>
                             </a>
                         </li>
-                        <li class="media single-media" data-scroll data-scroll-class="single-media-finish"
-                            data-scroll-offset="200">
+                        <li class="media">
                             <a target="_blank" class="media-link"
                                 href="https://dribbble.com/PawelSkrodzki"><span>Dribble</span>
                                 <img src='img/Arrow short.svg'>
@@ -251,15 +205,12 @@
     <script src="js/anime.min.js"></script>
     <script src="js/moment.min.js"></script>
     <script src="js/grained.min.js"></script>
-    <script src="js/locomotive-scroll.min.js"></script>
-    <script src="js/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
-    <!-- <script src="js/ScrollMagic.min.js"></script> -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
     <script src="js/noframework.waypoints.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.7.11/lottie.min.js"
         integrity="sha512-jbTBHn1aXqglu6As1bUWxdPYc9b1uMHtreBM30oW3HbNFDS/eO1n+f98l4qcmw2l7CAdjWSbu3wVjm9SKISOaw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="js/script.js"></script>
+    <!-- <script src="js/ScrollMagic.min.js"></script> -->
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script> -->
 
 </body>

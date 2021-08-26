@@ -1,3 +1,9 @@
+window.onbeforeunload = function () {
+  window.scrollTo(0, 0);
+};
+
+// date functions
+
 const clockSpan = document.getElementById('time');
 const dateSpan = document.getElementById('date');
 const yearSpan = document.getElementById('year');
@@ -41,16 +47,17 @@ const enableScrolling = () => {
 // cursor functions
 
 const cursor = document.querySelector('.cursor');
-const cursorAnimObjectsCollection = document.querySelectorAll(
-  '.project-photo-overlay, .index-menu, .menu-item, .media-link span, .media-link img , .studio-link span, .studio-link img '
-);
-const cursorAnimObjectsArray = [].slice.call(cursorAnimObjectsCollection);
+const cursorAnimObjects = [
+  ...document.querySelectorAll(
+    '.project-photo-overlay, .index-menu, .menu-project-title, .menu-item img, .media-link span, .media-link img , .studio-link span, .studio-link img '
+  ),
+];
 
 document.addEventListener('mousemove', (e) => {
   cursor.setAttribute('style', 'top: ' + (e.clientY - 4) + 'px; left: ' + (e.clientX - 4) + 'px;');
 });
 
-cursorAnimObjectsArray.forEach((container) => {
+cursorAnimObjects.forEach((container) => {
   container.addEventListener('mouseenter', () => {
     cursor.classList.add('active');
   });
@@ -114,13 +121,12 @@ const loaderAnimation = () => {
     //     opacity: 0,
     //     duration: 1500,
     //     begin: () => {
-    //       // hide first animated elements
-    //       const fadeInBottomInvViewCollection = document.querySelectorAll('.fadein-bottom-inview');
-    //       const fadeInBottomInvViewArray = [].slice.call(fadeInBottomInvViewCollection);
-
-    //       fadeInBottomInvViewArray.forEach((element) => {
-    //         element.style.opacity = 0;
-    //       });
+    //       // // hide first animated elements
+    //       // const fadeInBottomInvViewCollection = document.querySelectorAll('.fadein-bottom-inview');
+    //       // const fadeInBottomInvViewArray = [].slice.call(fadeInBottomInvViewCollection);
+    //       // fadeInBottomInvViewArray.forEach((element) => {
+    //       //   element.style.opacity = 0;
+    //       // });
     //     },
     //     complete: () => {
     //       enableScrolling();
@@ -181,8 +187,6 @@ const loaderAnimation = () => {
           document.querySelector('.arrow-container img').style.opacity = 0;
         },
         complete: () => {
-          fadeInBottomAnimation('.fadein-bottom-inview');
-
           anime({
             targets: '.arrow-container img',
             easing: 'linear',
@@ -215,8 +219,6 @@ const hireMeAnim = bodymovin.loadAnimation({
   path: 'https://assets5.lottiefiles.com/packages/lf20_3doegq7p.json',
 });
 
-// hireMeAnim.goToAndStop(89, true);
-
 svgHireMeContainer.addEventListener('mouseover', () => {
   const currentFrame = hireMeAnim.currentFrame;
   hireMeAnim.setDirection(1);
@@ -240,8 +242,6 @@ const contactMeAnim = bodymovin.loadAnimation({
   path: 'https://assets3.lottiefiles.com/packages/lf20_c47tkgvl.json',
 });
 
-// contactMeAnim.goToAndStop(89, true);
-
 svgContactMeContainer.addEventListener('mouseover', () => {
   const currentFrame = contactMeAnim.currentFrame;
   contactMeAnim.setDirection(1);
@@ -254,199 +254,7 @@ svgContactMeContainer.addEventListener('mouseout', () => {
   contactMeAnim.goToAndPlay(currentFrame, true);
 });
 
-// rest of animations
-
-const fadeInBottomAnimation = (elementsClass) => {
-  const fadeInBottomCollection = document.querySelectorAll(elementsClass);
-  const fadeInBottomArray = [].slice.call(fadeInBottomCollection);
-
-  fadeInBottomArray.forEach((element) => {
-    element.style.opacity = 0;
-
-    new Waypoint({
-      element: element,
-      handler: function () {
-        anime({
-          targets: element,
-          easing: 'easeInOutCubic',
-          duration: 1000,
-          opacity: [0, 1],
-          translateY: [100, 0],
-          loop: false,
-        });
-        this.destroy();
-      },
-      offset: '75%',
-    });
-  });
-};
-
-photosTrigger = document.querySelector('.photos-container');
-mediaTrigger = document.querySelector('.media-list');
-
-let controller = new ScrollMagic.Controller();
-let scene = new ScrollMagic.Scene({
-  triggerElement: '#projects-section-container',
-  duration: 2000,
-  triggerHook: 0,
-})
-
-  .setPin('#projects-section-container')
-  .addTo(controller);
-
-const horizontalProjectsScrolling = () => {
-  let animation = anime({
-    targets: '.project-main-container',
-    easing: 'easeInOutCubic',
-    translateX: [0, '-100%'],
-    duration: 2000,
-    delay: 0,
-    autoplay: false,
-    // check is it works without function below
-    // begin: (e) => {
-    //   e.preventDefault();
-    // },
-    complete: () => {
-      groupFadeInBottomAnimation(photosTrigger, '.single-photo');
-      groupFadeInBottomAnimation(mediaTrigger, '.media');
-      fadeInBottomAnimation('.footer-fadein-bottom');
-    },
-  });
-
-  scene.on('progress', function (event) {
-    animation.seek(animation.duration * event.progress);
-  });
-};
-
-const projectsAnimationTrigger = document.querySelector('.projects-timeline');
-const projectsContainer = document.querySelector('.project-main-container');
-
-const projectsAnimation = () => {
-  projectsAnimationTrigger.style.opacity = 0;
-  projectsContainer.style.transform = 'rotate(13deg) translateX(100%) ';
-
-  new Waypoint({
-    element: projectsAnimationTrigger,
-    handler: function () {
-      const tl = anime
-        .timeline({
-          easing: 'easeInOutCubic',
-        })
-        .add({
-          targets: '.projects-h',
-          keyframes: [
-            { opacity: 1, duration: 1 },
-            { translateY: ['200%', 0], duration: 800 },
-          ],
-        })
-        .add(
-          {
-            targets: '.project-main-container',
-            translateX: 0,
-            duration: 1500,
-            complete: () => {
-              horizontalProjectsScrolling();
-            },
-          },
-          100
-        );
-      this.destroy();
-    },
-    offset: '75%',
-  });
-};
-
-projectsAnimation();
-
-const junorPositionTrigger = document.querySelector('.junior-position-container');
-
-const juniorPositionHeadingsCollection = document.querySelectorAll('.position-h');
-
-const juniorPositionHeadingsArray = [].slice.call(juniorPositionHeadingsCollection);
-
-const juniorPositionAnimation = () => {
-  juniorPositionHeadingsArray.forEach((heading) => {
-    heading.style.transform = 'translateY(115%)';
-  });
-
-  new Waypoint({
-    element: junorPositionTrigger,
-    handler: function () {
-      const tl = anime
-        .timeline({
-          easing: 'easeInOutCubic',
-        })
-        .add({
-          targets: '.position-h',
-          translateY: 0,
-          duration: 1000,
-        })
-        .add(
-          {
-            targets: '.position-h-overlay-1',
-            easing: 'easeInOutCubic',
-            keyframes: [{ translateX: [300, 0], translateY: [200, 0], duration: 1600 }],
-          },
-          800
-        )
-        .add(
-          {
-            targets: '.position-h-overlay-2',
-            easing: 'easeInOutCubic',
-            keyframes: [{ translateX: [-200, 0], translateY: [200, 0], duration: 1600 }],
-          },
-          800
-        )
-        .add(
-          {
-            targets: '.position-h-overlay-3',
-            easing: 'easeInOutCubic',
-            keyframes: [{ translateX: [300, 0], translateY: [200, 0], duration: 1600 }],
-          },
-          800
-        )
-        .add(
-          {
-            targets: '.position-anim-last',
-            opacity: [0, 1],
-            translateY: [100, 0],
-          },
-          '-=500'
-        );
-      this.destroy();
-    },
-    offset: '80%',
-  });
-};
-
-juniorPositionAnimation();
-
-const groupFadeInBottomAnimation = (trigger, objectsClass) => {
-  const objectsHtmlCollection = document.querySelectorAll(objectsClass);
-  const objectsHtmlArray = [].slice.call(objectsHtmlCollection);
-
-  objectsHtmlArray.forEach((element) => {
-    element.style.opacity = 0;
-  });
-
-  new Waypoint({
-    element: trigger,
-    handler: function () {
-      anime({
-        targets: objectsClass,
-        easing: 'easeInOutCubic',
-        opacity: 1,
-        translateY: [100, 0],
-        delay: anime.stagger(250),
-        duration: 800,
-      });
-      this.destroy();
-    },
-    offset: '80%',
-  });
-};
-
-// menu function
+// menu functions
 
 const indexElement = document.querySelector('.index-menu');
 const menuElement = document.querySelector('.menu');
@@ -496,3 +304,257 @@ indexElement.addEventListener('click', () => {
     closeMenu();
   }
 });
+
+let pageContainer = document.querySelector('.main-container');
+
+if (window.innerWidth >= 768) {
+  gsap.registerPlugin(ScrollTrigger);
+
+  /* SMOOTH SCROLL */
+  const scroller = new LocomotiveScroll({
+    el: pageContainer,
+    smooth: true,
+    multiplier: 0.7,
+  });
+
+  scroller.on('scroll', ScrollTrigger.update);
+
+  ScrollTrigger.scrollerProxy(pageContainer, {
+    scrollTop(value) {
+      return arguments.length ? scroller.scrollTo(value, 0, 0) : scroller.scroll.instance.scroll.y;
+    },
+    getBoundingClientRect() {
+      return {
+        left: 0,
+        top: 0,
+        width: window.innerWidth,
+        height: window.innerHeight,
+      };
+    },
+    pinType: pageContainer.style.transform ? 'transform' : 'fixed',
+  });
+
+  window.addEventListener('load', function () {
+    let pinWrap = document.querySelector('.project-main-container');
+    let pinWrapWidth = pinWrap.offsetWidth;
+    let horizontalScrollLength = pinWrapWidth / 2;
+    // let horizontalScrollLength = pinWrapWidth;
+
+    // Pinning and horizontal scrolling
+
+    gsap.to('.project-main-container', {
+      scrollTrigger: {
+        scroller: pageContainer, //locomotive-scroll
+        scrub: true,
+        trigger: '.projects-section-container',
+        pin: true,
+        anticipatePin: 1,
+        start: 'top top',
+        end: pinWrapWidth,
+      },
+      x: -horizontalScrollLength,
+      ease: 'none',
+    });
+
+    ScrollTrigger.addEventListener('refresh', () => scroller.update()); //locomotive-scroll
+
+    ScrollTrigger.refresh();
+  });
+} else {
+  const elementsToAnimate = [
+    ...document.querySelectorAll(
+      '.fadein-bottom-start, .fadein-top-start, .fadein-left-start, .fadein-right-start, .single-photo, .single-media, .project-photo-overlay'
+    ),
+  ];
+
+  elementsToAnimate.forEach((element) => {
+    element.style.opacity = '1';
+    element.style.transition = '0s';
+    element.style.transform = 'translateY(0)';
+    element.style.transform = 'translateX(0)';
+  });
+}
+
+// rest of animations
+
+// const fadeInBottomAnimation = (elementsClass) => {
+//   const fadeInBottomCollection = document.querySelectorAll(elementsClass);
+//   const fadeInBottomArray = [].slice.call(fadeInBottomCollection);
+
+//   fadeInBottomArray.forEach((element) => {
+//     element.style.opacity = 0;
+
+//     new Waypoint({
+//       element: element,
+//       handler: function () {
+//         anime({
+//           targets: element,
+//           easing: 'easeInOutCubic',
+//           duration: 1000,
+//           opacity: [0, 1],
+//           translateY: [100, 0],
+//           loop: false,
+//         });
+//         this.destroy();
+//       },
+//       offset: '75%',
+//     });
+//   });
+// };
+
+// photosTrigger = document.querySelector('.photos-container');
+// mediaTrigger = document.querySelector('.media-list');
+
+// let controller = new ScrollMagic.Controller();
+// let scene = new ScrollMagic.Scene({
+//   triggerElement: '#projects-section-container',
+//   duration: 2000,
+//   triggerHook: 0,
+// })
+
+//   .setPin('#projects-section-container')
+//   .addTo(controller);
+
+// const horizontalProjectsScrolling = () => {
+//   let animation = anime({
+//     targets: '.project-main-container',
+//     easing: 'easeInOutCubic',
+//     translateX: [0, '-100%'],
+//     duration: 2000,
+//     delay: 0,
+//     autoplay: false,
+//     // check is it works without function below
+//   });
+
+//   scene.on('progress', function (event) {
+//     animation.seek(animation.duration * event.progress);
+//   });
+// };
+
+// const projectsAnimationTrigger = document.querySelector('.projects-timeline');
+// const projectsContainer = document.querySelector('.project-main-container');
+
+// const projectsAnimation = () => {
+//   projectsAnimationTrigger.style.opacity = 0;
+//   projectsContainer.style.transform = 'rotate(13deg) translateX(100%) ';
+
+//   new Waypoint({
+//     element: projectsAnimationTrigger,
+//     handler: function () {
+//       const tl = anime
+//         .timeline({
+//           easing: 'easeInOutCubic',
+//         })
+//         .add({
+//           targets: '.projects-h',
+//           keyframes: [
+//             { opacity: 1, duration: 1 },
+//             { translateY: ['200%', 0], duration: 800 },
+//           ],
+//         })
+//         .add(
+//           {
+//             targets: '.project-main-container',
+//             translateX: 0,
+//             duration: 1500,
+//             complete: () => {
+//               horizontalProjectsScrolling();
+//             },
+//           },
+//           100
+//         );
+//       this.destroy();
+//     },
+//     offset: '75%',
+//   });
+// };
+
+// projectsAnimation();
+
+// const junorPositionTrigger = document.querySelector('.junior-position-container');
+
+// const juniorPositionHeadingsCollection = document.querySelectorAll('.position-h');
+
+// const juniorPositionHeadingsArray = [].slice.call(juniorPositionHeadingsCollection);
+
+// const juniorPositionAnimation = () => {
+//   juniorPositionHeadingsArray.forEach((heading) => {
+//     heading.style.transform = 'translateY(115%)';
+//   });
+
+//   new Waypoint({
+//     element: junorPositionTrigger,
+//     handler: function () {
+//       const tl = anime
+//         .timeline({
+//           easing: 'easeInOutCubic',
+//         })
+//         .add({
+//           targets: '.position-h',
+//           translateY: 0,
+//           duration: 1000,
+//         })
+//         .add(
+//           {
+//             targets: '.position-h-overlay-1',
+//             easing: 'easeInOutCubic',
+//             keyframes: [{ translateX: [300, 0], translateY: [200, 0], duration: 1600 }],
+//           },
+//           800
+//         )
+//         .add(
+//           {
+//             targets: '.position-h-overlay-2',
+//             easing: 'easeInOutCubic',
+//             keyframes: [{ translateX: [-200, 0], translateY: [200, 0], duration: 1600 }],
+//           },
+//           800
+//         )
+//         .add(
+//           {
+//             targets: '.position-h-overlay-3',
+//             easing: 'easeInOutCubic',
+//             keyframes: [{ translateX: [300, 0], translateY: [200, 0], duration: 1600 }],
+//           },
+//           800
+//         )
+//         .add(
+//           {
+//             targets: '.position-anim-last',
+//             opacity: [0, 1],
+//             translateY: [100, 0],
+//           },
+//           '-=500'
+//         );
+//       this.destroy();
+//     },
+//     offset: '80%',
+//   });
+// };
+
+// juniorPositionAnimation();
+
+// const groupFadeInBottomAnimation = (trigger, objectsClass) => {
+//   const objectsHtmlCollection = document.querySelectorAll(objectsClass);
+//   const objectsHtmlArray = [].slice.call(objectsHtmlCollection);
+
+//   objectsHtmlArray.forEach((element) => {
+//     element.style.opacity = 0;
+//   });
+
+//   new Waypoint({
+//     element: trigger,
+//     handler: function () {
+//       anime({
+//         targets: objectsClass,
+//         easing: 'easeInOutCubic',
+//         opacity: 1,
+//         translateY: [100, 0],
+//         delay: anime.stagger(250),
+//         duration: 800,
+//       });
+//       this.destroy();
+//     },
+//     offset: '80%',
+//   });
+// };
