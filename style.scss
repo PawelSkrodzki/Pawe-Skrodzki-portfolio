@@ -94,42 +94,53 @@ input[type="number"] {
 // CURSOR STYLES
 
 .cursor {
+    position: relative;
     position: fixed;
     background-color: #e4f51a;
     width: 8px;
     height: 8px;
     border-radius: 100%;
-    z-index: 10; //ewentualnie edytować
+    z-index: 10;
     user-select: none;
     pointer-events: none;
     transform: scale(0.8);
     z-index: 999;
+
+    .menu-cursor-text,
+    .basic-cursor-text {
+        position: absolute;
+        top: 7px;
+        left: 50%;
+        transform: translateX(-50%);
+        opacity: 0;
+    }
 }
 
-.cursor::before {
-    content: "open";
-    font-size: 22px;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    transform: translateX(-200%);
-    top: 10px;
-    left: 0;
-    display: block;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-radius: 100%;
-    opacity: 0;
-}
+// .cursor::before {
+//     content: "open";
+//     font-size: 22px;
+//     width: 100%;
+//     height: 100%;
+//     position: absolute;
+//     transform: translateX(-200%);
+//     top: 10px;
+//     left: 0;
+//     display: block;
+//     background-position: center;
+//     background-repeat: no-repeat;
+//     background-size: cover;
+//     border-radius: 100%;
+//     opacity: 0;
+// }
 
-.cursor.active {
+.cursor.active .basic-cursor-text,
+.cursor.active-menu .menu-cursor-text {
     opacity: 1;
 }
 
-.cursor.active::before {
-    opacity: 1;
-}
+// .cursor.active::before {
+//     opacity: 1;
+// }
 
 // LOADER STYLES
 
