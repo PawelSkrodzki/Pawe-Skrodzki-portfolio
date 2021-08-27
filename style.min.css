@@ -18,7 +18,6 @@ body {
 
 html,
 body {
-  cursor: none;
   overflow-x: hidden;
 }
 
@@ -39,11 +38,11 @@ span,
 a,
 li {
   font-size: 20px;
+  line-height: 132%;
   font-weight: 300;
   font-family: "Apple Garamond";
   color: #e4f51a;
   text-decoration: none;
-  cursor: none;
 }
 
 input,
@@ -60,7 +59,6 @@ textarea {
   font-family: "Apple Garamond";
   color: #e4f51a;
   font-size: 20px;
-  cursor: none;
 }
 
 ::-webkit-scrollbar {
@@ -92,6 +90,7 @@ input[type="number"] {
 }
 
 .cursor {
+  display: none;
   position: relative;
   position: fixed;
   background-color: #e4f51a;
@@ -772,6 +771,21 @@ input[type="number"] {
 }
 
 @media (min-width: 992px) {
+  body,
+  input,
+  label,
+  select,
+  button,
+  textarea,
+  p,
+  span,
+  a,
+  li {
+    cursor: none;
+  }
+  .cursor {
+    display: block;
+  }
   h1 {
     font-size: 124px;
     line-height: 95%;

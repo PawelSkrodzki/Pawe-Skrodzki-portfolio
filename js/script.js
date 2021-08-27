@@ -344,47 +344,50 @@ indexElement.addEventListener('click', () => {
 });
 
 // CURSOR FUNCTIONS
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 992) {
+    const cursor = document.querySelector('.cursor');
+    const cursorAnimItems = [
+      ...document.querySelectorAll(
+        '.project-photo-overlay, .menu-project-title, .menu-item img, .media-link span, .media-link img , .studio-link span, .studio-link img '
+      ),
+    ];
 
-const cursor = document.querySelector('.cursor');
-const cursorAnimItems = [
-  ...document.querySelectorAll(
-    '.project-photo-overlay, .menu-project-title, .menu-item img, .media-link span, .media-link img , .studio-link span, .studio-link img '
-  ),
-];
+    document.addEventListener('mousemove', (e) => {
+      cursor.setAttribute('style', 'top: ' + (e.clientY - 4) + 'px; left: ' + (e.clientX - 4) + 'px;');
+    });
 
-document.addEventListener('mousemove', (e) => {
-  cursor.setAttribute('style', 'top: ' + (e.clientY - 4) + 'px; left: ' + (e.clientX - 4) + 'px;');
-});
+    cursorAnimItems.forEach((item) => {
+      item.addEventListener('mouseenter', () => {
+        cursor.classList.add('active');
+      });
 
-cursorAnimItems.forEach((item) => {
-  item.addEventListener('mouseenter', () => {
-    cursor.classList.add('active');
-  });
+      item.addEventListener('mouseout', () => {
+        cursor.classList.remove('active');
+      });
+    });
 
-  item.addEventListener('mouseout', () => {
-    cursor.classList.remove('active');
-  });
-});
+    const menuObject = document.querySelector('.index-menu');
+    const menuCursorText = document.querySelector('.menu-cursor-text');
 
-const menuObject = document.querySelector('.index-menu');
-const menuCursorText = document.querySelector('.menu-cursor-text');
+    menuObject.addEventListener('click', () => {
+      let isMenuOpen = menuElement.classList.contains('open');
+      if (!isMenuOpen) {
+        menuCursorText.textContent = 'close';
+        console.log(222);
+      } else {
+        menuCursorText.textContent = 'open';
+      }
+    });
 
-menuObject.addEventListener('click', () => {
-  let isMenuOpen = menuElement.classList.contains('open');
-  if (!isMenuOpen) {
-    menuCursorText.textContent = 'close';
-    console.log(222);
-  } else {
-    menuCursorText.textContent = 'open';
+    menuObject.addEventListener('mouseenter', () => {
+      cursor.classList.add('active-menu');
+    });
+
+    menuObject.addEventListener('mouseout', () => {
+      cursor.classList.remove('active-menu');
+    });
   }
-});
-
-menuObject.addEventListener('mouseenter', () => {
-  cursor.classList.add('active-menu');
-});
-
-menuObject.addEventListener('mouseout', () => {
-  cursor.classList.remove('active-menu');
 });
 
 // rest of animations
