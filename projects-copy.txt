@@ -1,0 +1,56 @@
+// zapasowe style projektów
+
+// #projects-section-container {
+//     margin: 128px 0 120px 0;
+
+//     .projects-h {
+//         margin: 0 0 0 15px;
+//     }
+//     .project-overlay-container {
+//         position: relative;
+//         height: 450px;
+//         width: 1px;
+//         z-index: 1;
+
+//         .project-main-container {
+//             display: flex;
+//             z-index: -1;
+//             position: absolute;
+//             height: auto;
+//             top: -20px;
+//             left: 70px;
+//             transform: rotate(13deg);
+//             transform-origin: top left;
+
+//             .project-photo-overlay {
+//                 position: relative;
+//                 margin-right: 30px;
+//                 overflow: hidden;
+//                 height: 380px;
+
+//                 &:hover img {
+//                     transform: scale(1.2);
+//                 }
+
+//                 img {
+//                     height: 380px;
+//                     transition: transform 0.6s;
+//                 }
+
+//                 .project-number {
+//                     font-size: 22px;
+//                     cursor: none;
+//                     pointer-events: none;
+//                 }
+
+//                 .project-title {
+//                     font-size: 32px;
+//                     line-height: 92%;
+//                     text-align: center;
+//                     cursor: none;
+//                     pointer-events: none;
+//                 }
+//             }
+//         }
+//     }
+// }

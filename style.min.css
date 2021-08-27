@@ -312,18 +312,18 @@ input[type="number"] {
 }
 
 .hire-me-container {
-  height: 20px;
+  height: 40px;
   padding: 5px;
-  width: 150px;
+  width: 110px;
   position: relative;
 }
 
-.hire-me {
+.hire-me-container .hire-me {
   position: absolute;
-  top: -50px;
+  bottom: 0;
   left: 0px;
-  width: 140px;
-  height: 120px;
+  width: 110px;
+  height: 40px;
 }
 
 .contact-me-container {
@@ -334,7 +334,7 @@ input[type="number"] {
   position: relative;
 }
 
-.contact-me {
+.contact-me-container .contact-me {
   position: absolute;
   top: -50px;
   left: 0px;
@@ -440,6 +440,7 @@ input[type="number"] {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   margin-top: 153px;
+  z-index: 99;
 }
 
 .h-first-line .name-photo-container {
@@ -454,6 +455,7 @@ input[type="number"] {
   height: 70px;
   width: 70px;
   margin: 0 30px;
+  z-index: -99;
 }
 
 .p-section {
@@ -769,6 +771,14 @@ input[type="number"] {
     margin-top: 0;
     width: 310px;
   }
+  .hire-me-container {
+    height: 25px;
+    width: 115px;
+  }
+  .hire-me-container .hire-me {
+    bottom: -8px;
+    width: 125px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -868,6 +878,19 @@ input[type="number"] {
   }
   .footer {
     margin-top: 216px;
+  }
+  .hire-me-container {
+    height: 20px;
+    padding: 5px;
+    width: 150px;
+    position: relative;
+  }
+  .hire-me-container .hire-me {
+    position: absolute;
+    top: -50px;
+    left: 0px;
+    width: 140px;
+    height: 120px;
   }
 }
 
