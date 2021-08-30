@@ -77,11 +77,11 @@ function enableScroll() {
 
 // LOCOMOTIVESCROLL AND GSAP FUNCTION
 
+let pageContainer = document.querySelector('.main-container');
+
 const locomotiveAndGsapInitializer = () => {
   if (window.innerWidth >= 768) {
     gsap.registerPlugin(ScrollTrigger);
-
-    let pageContainer = document.querySelector('.main-container');
 
     const scroller = new LocomotiveScroll({
       el: pageContainer,
@@ -106,33 +106,33 @@ const locomotiveAndGsapInitializer = () => {
       pinType: pageContainer.style.transform ? 'transform' : 'fixed',
     });
 
-    window.addEventListener('load', (e) => {
-      e.preventDefault();
-      let pinWrap = document.querySelector('.project-main-container');
-      let pinWrapWidth = pinWrap.offsetWidth;
-      let horizontalScrollLength = pinWrapWidth / 2;
+    // window.addEventListener('load', (e) => {
+    // e.preventDefault();
+    let pinWrap = document.querySelector('.project-main-container');
+    let pinWrapWidth = pinWrap.offsetWidth;
+    let horizontalScrollLength = pinWrapWidth / 2;
 
-      // Pinning and horizontal scrolling
+    // Pinning and horizontal scrolling
 
-      gsap.to('.project-main-container', {
-        scrollTrigger: {
-          scroller: pageContainer,
-          scrub: true,
-          trigger: '.projects-section-container',
-          pin: true,
-          anticipatePin: 1,
-          start: 'top top',
-          end: pinWrapWidth,
-        },
-        x: -horizontalScrollLength,
-        ease: 'none',
-      });
-
-      ScrollTrigger.addEventListener('refresh', () => scroller.update());
-
-      ScrollTrigger.refresh();
-      console.log('odaplone');
+    gsap.to('.project-main-container', {
+      scrollTrigger: {
+        scroller: pageContainer,
+        scrub: true,
+        trigger: '.projects-section-container',
+        pin: true,
+        anticipatePin: 1,
+        start: 'top top',
+        end: pinWrapWidth,
+      },
+      x: -horizontalScrollLength,
+      ease: 'none',
     });
+
+    ScrollTrigger.addEventListener('refresh', () => scroller.update());
+
+    ScrollTrigger.refresh();
+    console.log('odaplone');
+    // });
   } else {
     const elementsToAnimate = [
       ...document.querySelectorAll(
@@ -169,119 +169,115 @@ const randomMovementY = () => {
   } else return random;
 };
 
-const loaderAnimation = () => {
-  const loaderTl = anime
-    .timeline({})
-    .add({
+const loaderTl = anime
+  .timeline({})
+  .add({
+    targets: '.loader-img',
+    opacity: 1,
+    delay: anime.stagger(250, { start: 300 }),
+    begin: () => {
+      anime({
+        targets: '.counter',
+        value: [1, 100],
+        duration: 4000,
+        easing: 'easeInOutCubic',
+        round: 1,
+      });
+      disableScroll();
+    },
+  })
+  .add(
+    {
       targets: '.loader-img',
-      opacity: 1,
-      delay: anime.stagger(250, { start: 300 }),
+      easing: 'easeInOutCubic',
+      translateX: getRandomMovementX,
+      translateY: randomMovementY,
+      rotate: () => {
+        return anime.random(-360, 360);
+      },
+      duration: 2000,
+      direction: 'alternate',
+    },
+    '-=800'
+  )
+  .add(
+    {
+      targets: '.loader-content',
+      easing: 'easeInOutCubic',
+      opacity: 0,
+      duration: 1500,
+    },
+    '-=900'
+  )
+  .add(
+    {
+      targets: '#loader',
+      easing: 'easeInOutCubic',
+      opacity: 0,
+      duration: 1500,
+      complete: () => {
+        document.body.style.overflow = 'show';
+        const loader = document.getElementById('loader');
+        loader.style.display = 'none';
+      },
+    },
+    '-=700'
+  )
+  .add(
+    {
+      targets: '.h-first-line',
+      easing: 'easeInOutCubic',
+      translateX: ['-100%', 0],
+      duration: 2500,
+    },
+    '-=1000'
+  )
+  .add(
+    {
+      targets: '.h-second-line',
+      easing: 'easeInOutCubic',
+      translateX: ['120%', 0],
+      duration: 2500,
+    },
+    '-=2500'
+  )
+  .add(
+    {
+      targets: '.h-portrait',
+      easing: 'easeInOutCubic',
+      opacity: [0, 1],
+      duration: 700,
       begin: () => {
-        anime({
-          targets: '.counter',
-          value: [1, 100],
-          duration: 4000,
-          easing: 'easeInOutCubic',
-          round: 1,
+        const imgAnimation = anime({
+          targets: '.h-portrait',
+          easing: 'linear',
+          loop: true,
+          keyframes: [
+            { translateY: 30, translateX: 20, duration: 700 },
+            { translateY: 60, translateX: 0, duration: 700 },
+            { translateY: 30, translateX: -20, duration: 700 },
+            { translateY: 0, translateX: 0, duration: 700 },
+          ],
         });
-        disableScroll();
+        locomotiveAndGsapInitializer();
+        document.querySelector('.arrow-container img').style.opacity = 0;
       },
-    })
-    .add(
-      {
-        targets: '.loader-img',
-        easing: 'easeInOutCubic',
-        translateX: getRandomMovementX,
-        translateY: randomMovementY,
-        rotate: () => {
-          return anime.random(-360, 360);
-        },
-        duration: 2000,
-        direction: 'alternate',
+      complete: () => {
+        const last = anime({
+          targets: '.arrow-container img',
+          easing: 'linear',
+          duration: 1200,
+          translateX: [-50, 50],
+          loop: true,
+          begin: () => {
+            enableScroll();
+            document.querySelector('.arrow-container img').style.opacity = 1;
+          },
+        });
       },
-      '-=800'
-    )
-    .add(
-      {
-        targets: '.loader-content',
-        easing: 'easeInOutCubic',
-        opacity: 0,
-        duration: 1500,
-      },
-      '-=900'
-    )
-    .add(
-      {
-        targets: '#loader',
-        easing: 'easeInOutCubic',
-        opacity: 0,
-        duration: 1500,
-        complete: () => {
-          enableScroll();
-          document.body.style.overflow = 'show';
-          const loader = document.getElementById('loader');
-          loader.style.display = 'none';
-        },
-      },
-      '-=700'
-    )
-    .add(
-      {
-        targets: '.h-first-line',
-        easing: 'easeInOutCubic',
-        translateX: ['-100%', 0],
-        duration: 2500,
-      },
-      '-=1000'
-    )
-    .add(
-      {
-        targets: '.h-second-line',
-        easing: 'easeInOutCubic',
-        translateX: ['120%', 0],
-        duration: 2500,
-      },
-      '-=2500'
-    )
-    .add(
-      {
-        targets: '.h-portrait',
-        easing: 'easeInOutCubic',
-        opacity: [0, 1],
-        duration: 700,
-        begin: () => {
-          const imgAnimation = anime({
-            targets: '.h-portrait',
-            easing: 'linear',
-            loop: true,
-            keyframes: [
-              { translateY: 30, translateX: 20, duration: 700 },
-              { translateY: 60, translateX: 0, duration: 700 },
-              { translateY: 30, translateX: -20, duration: 700 },
-              { translateY: 0, translateX: 0, duration: 700 },
-            ],
-          });
-          imgAnimation.finished.then(locomotiveAndGsapInitializer());
-          document.querySelector('.arrow-container img').style.opacity = 0;
-        },
-        complete: () => {
-          anime({
-            targets: '.arrow-container img',
-            easing: 'linear',
-            duration: 1200,
-            translateX: [-50, 50],
-            loop: true,
-            begin: () => {
-              document.querySelector('.arrow-container img').style.opacity = 1;
-            },
-          });
-        },
-      },
-      '-=500'
-    );
-};
-
-loaderAnimation();
+    },
+    '-=500'
+  );
 
 // LOTTIE ANIMATIONS
 
