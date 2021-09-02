@@ -10,4 +10,4 @@
     <li>GSAP</li>
     <li>Lottie Files</li>
  </ul>
-<p>Check results <a href="https://pawelskrodzki.github.io/Pawel-Skrodzki-portfolio/" targrt="_blank">here</a>
+<p>Check results <a href="https://pawelskrodzki.github.io/Pawel-Skrodzki-portfolio/" target="_blank">here</a>
