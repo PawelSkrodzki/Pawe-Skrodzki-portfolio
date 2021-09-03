@@ -182,96 +182,76 @@ input[type="number"] {
 
 #loader .loader-content #loader-images #loader-img1 {
   left: -4px;
-  -webkit-transform: rotate(12deg);
-          transform: rotate(12deg);
 }
 
 #loader .loader-content #loader-images #loader-img2 {
   top: 10px;
-  -webkit-transform: rotate(-13deg);
-          transform: rotate(-13deg);
 }
 
 #loader .loader-content #loader-images #loader-img3 {
   left: 6px;
   top: 5px;
-  -webkit-transform: rotate(4deg);
-          transform: rotate(4deg);
+  width: 120px;
+  height: 120px;
 }
 
 #loader .loader-content #loader-images #loader-img4 {
   top: -6px;
-  -webkit-transform: rotate(-2deg);
-          transform: rotate(-2deg);
 }
 
 #loader .loader-content #loader-images #loader-img5 {
   left: -4px;
-  -webkit-transform: rotate(-5deg);
-          transform: rotate(-5deg);
 }
 
 #loader .loader-content #loader-images #loader-img6 {
   top: 3px;
-  -webkit-transform: rotate(3deg);
-          transform: rotate(3deg);
 }
 
 #loader .loader-content #loader-images #loader-img7 {
   left: -2px;
   top: 2px;
-  -webkit-transform: rotate(3deg);
-          transform: rotate(3deg);
+  width: 120px;
+  height: 120px;
 }
 
 #loader .loader-content #loader-images #loader-img8 {
   top: -6px;
-  -webkit-transform: rotate(-2deg);
-          transform: rotate(-2deg);
 }
 
 #loader .loader-content #loader-images #loader-img9 {
   top: 4px;
-  -webkit-transform: rotate(-9deg);
-          transform: rotate(-9deg);
 }
 
 #loader .loader-content #loader-images #loader-img10 {
   left: 3px;
   top: 5px;
-  -webkit-transform: rotate(3deg);
-          transform: rotate(3deg);
+  width: 120px;
+  height: 120px;
 }
 
 #loader .loader-content #loader-images #loader-img11 {
   top: -6px;
-  -webkit-transform: rotate(-2deg);
-          transform: rotate(-2deg);
 }
 
 #loader .loader-content #loader-images #loader-img12 {
   top: 3px;
-  -webkit-transform: rotate(5deg);
-          transform: rotate(5deg);
+  width: 120px;
+  height: 120px;
 }
 
 #loader .loader-content #loader-images #loader-img13 {
   left: -2px;
   top: 2px;
-  -webkit-transform: rotate(-7deg);
-          transform: rotate(-7deg);
 }
 
 #loader .loader-content #loader-images #loader-img14 {
   top: 3px;
-  -webkit-transform: rotate(-12deg);
-          transform: rotate(-12deg);
+  width: 120px;
+  height: 120px;
 }
 
 #loader .loader-content #loader-images #loader-img15 {
   top: -7px;
-  -webkit-transform: rotate(6deg);
-          transform: rotate(6deg);
 }
 
 #loader .loader-content .counter-span {
@@ -471,6 +451,7 @@ input[type="number"] {
 
 .p-section .p-photo-container img {
   width: 86px;
+  opacity: 0.7;
 }
 
 .p-section .p-photo-container p {

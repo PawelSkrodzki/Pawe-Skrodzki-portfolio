@@ -131,7 +131,6 @@ const locomotiveAndGsapInitializer = () => {
     ScrollTrigger.addEventListener('refresh', () => scroller.update());
 
     ScrollTrigger.refresh();
-    console.log('odaplone');
     // });
   } else {
     const elementsToAnimate = [

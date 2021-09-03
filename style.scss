@@ -185,68 +185,63 @@ input[type="number"] {
 
             #loader-img1 {
                 left: -4px;
-                transform: rotate(12deg);
             }
             #loader-img2 {
                 top: 10px;
-                transform: rotate(-13deg);
             }
             #loader-img3 {
                 left: 6px;
                 top: 5px;
-                transform: rotate(4deg);
+                width: 120px;
+                height: 120px;
             }
             #loader-img4 {
                 top: -6px;
-                transform: rotate(-2deg);
             }
 
             #loader-img5 {
                 left: -4px;
-                transform: rotate(-5deg);
             }
             #loader-img6 {
                 top: 3px;
-                transform: rotate(3deg);
             }
             #loader-img7 {
                 left: -2px;
                 top: 2px;
-                transform: rotate(3deg);
+                width: 120px;
+                height: 120px;
             }
             #loader-img8 {
                 top: -6px;
-                transform: rotate(-2deg);
             }
             #loader-img9 {
                 top: 4px;
-                transform: rotate(-9deg);
             }
             #loader-img10 {
                 left: 3px;
                 top: 5px;
-                transform: rotate(3deg);
+                width: 120px;
+                height: 120px;
             }
             #loader-img11 {
                 top: -6px;
-                transform: rotate(-2deg);
             }
             #loader-img12 {
                 top: 3px;
-                transform: rotate(5deg);
+                width: 120px;
+                height: 120px;
             }
             #loader-img13 {
                 left: -2px;
                 top: 2px;
-                transform: rotate(-7deg);
             }
             #loader-img14 {
                 top: 3px;
-                transform: rotate(-12deg);
+                width: 120px;
+                height: 120px;
             }
             #loader-img15 {
                 top: -7px;
-                transform: rotate(6deg);
             }
         }
 
@@ -422,6 +417,7 @@ input[type="number"] {
 
         img {
             width: 86px;
+            opacity: 0.7;
         }
 
         p {
