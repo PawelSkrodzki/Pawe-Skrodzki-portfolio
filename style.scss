@@ -738,16 +738,15 @@ input[type="number"] {
         }
     }
     #projects-section-container {
-        .project-overlay-container {
-            .project-main-container {
-                .project-photo-overlay {
-                    .project-number {
-                        font-size: 28px;
-                    }
+        .project-main-container {
+            max-height: 1000px;
+            .project-photo-overlay {
+                .project-number {
+                    font-size: 28px;
+                }
 
-                    .project-title {
-                        font-size: 42px;
-                    }
+                .project-title {
+                    font-size: 42px;
                 }
             }
         }
@@ -865,10 +864,8 @@ input[type="number"] {
         font-size: 152px;
     }
     #projects-section-container {
-        .project-overlay-container {
-            .project-main-container {
-                left: 630px;
-            }
+        .project-main-container {
+            left: 630px;
         }
     }
 

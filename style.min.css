@@ -787,10 +787,13 @@ input[type="number"] {
   .nav-bar .nav-left-side .open-for-job {
     margin-left: 20px;
   }
-  #projects-section-container .project-overlay-container .project-main-container .project-photo-overlay .project-number {
+  #projects-section-container .project-main-container {
+    max-height: 1000px;
+  }
+  #projects-section-container .project-main-container .project-photo-overlay .project-number {
     font-size: 28px;
   }
-  #projects-section-container .project-overlay-container .project-main-container .project-photo-overlay .project-title {
+  #projects-section-container .project-main-container .project-photo-overlay .project-title {
     font-size: 42px;
   }
   .junior-position-container {
@@ -886,7 +889,7 @@ input[type="number"] {
   h2 {
     font-size: 152px;
   }
-  #projects-section-container .project-overlay-container .project-main-container {
+  #projects-section-container .project-main-container {
     left: 630px;
   }
   .footer .footer-link-container {
