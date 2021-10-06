@@ -493,18 +493,9 @@ input[type="number"] {
   height: 400px;
 }
 
-#projects-section-container .project-main-container .project-photo-overlay:hover img {
-  -webkit-transform: scale(1.2);
-          transform: scale(1.2);
-}
-
 #projects-section-container .project-main-container .project-photo-overlay img {
   height: 100%;
   width: 100%;
-  -webkit-transition: -webkit-transform 0.6s;
-  transition: -webkit-transform 0.6s;
-  transition: transform 0.6s;
-  transition: transform 0.6s, -webkit-transform 0.6s;
 }
 
 #projects-section-container .project-main-container .project-photo-overlay .project-number-container,
@@ -698,12 +689,6 @@ input[type="number"] {
     overflow: hidden;
     height: 31.5vw;
     min-width: 35.5vw;
-  }
-  #projects-section-container .project-main-container .project-photo-overlay img {
-    -webkit-transition: -webkit-transform 0.6s;
-    transition: -webkit-transform 0.6s;
-    transition: transform 0.6s;
-    transition: transform 0.6s, -webkit-transform 0.6s;
   }
   #projects-section-container .project-main-container .project-photo-overlay .project-number {
     font-size: 22px;

@@ -15,7 +15,7 @@ showTime = () => {
 };
 setInterval(showTime, 1000);
 
-//  background animation
+//  background grained
 
 var options = {
   animate: true,
@@ -79,73 +79,140 @@ function enableScroll() {
 
 let pageContainer = document.querySelector('.main-container');
 
+gsap.registerPlugin(ScrollTrigger);
+
 const locomotiveAndGsapInitializer = () => {
-  if (window.innerWidth >= 768) {
-    gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.matchMedia({
+    '(max-width: 767)': function () {
+      const elementsToAnimate = [
+        ...document.querySelectorAll(
+          '.fadein-bottom-start, .fadein-top-start, .fadein-left-start, .fadein-right-start, .single-photo, .single-media, .project-photo-overlay'
+        ),
+      ];
 
-    const scroller = new LocomotiveScroll({
-      el: pageContainer,
-      smooth: true,
-      multiplier: 0.7,
-    });
+      elementsToAnimate.forEach((element) => {
+        element.style.opacity = '1';
+        element.style.transition = '0s';
+        element.style.transform = 'translateY(0)';
+        element.style.transform = 'translateX(0)';
+      });
+    },
+    '(min-width: 768px)': function () {
+      const scroller = new LocomotiveScroll({
+        el: pageContainer,
+        smooth: true,
+        multiplier: 0.7,
+      });
 
-    scroller.on('scroll', ScrollTrigger.update);
+      scroller.on('scroll', ScrollTrigger.update);
 
-    ScrollTrigger.scrollerProxy(pageContainer, {
-      scrollTop(value) {
-        return arguments.length ? scroller.scrollTo(value, 0, 0) : scroller.scroll.instance.scroll.y;
-      },
-      getBoundingClientRect() {
-        return {
-          left: 0,
-          top: 0,
-          width: window.innerWidth,
-          height: window.innerHeight,
-        };
-      },
-      pinType: pageContainer.style.transform ? 'transform' : 'fixed',
-    });
+      ScrollTrigger.scrollerProxy(pageContainer, {
+        scrollTop(value) {
+          return arguments.length ? scroller.scrollTo(value, 0, 0) : scroller.scroll.instance.scroll.y;
+        },
+        getBoundingClientRect() {
+          return {
+            left: 0,
+            top: 0,
+            width: window.innerWidth,
+            height: window.innerHeight,
+          };
+        },
+        pinType: pageContainer.style.transform ? 'transform' : 'fixed',
+      });
 
-    // window.addEventListener('load', (e) => {
-    // e.preventDefault();
-    let pinWrap = document.querySelector('.project-main-container');
-    let pinWrapWidth = pinWrap.offsetWidth;
-    let horizontalScrollLength = pinWrapWidth / 2;
+      let pinWrap = document.querySelector('.project-main-container');
+      let pinWrapWidth = pinWrap.offsetWidth;
+      let horizontalScrollLength = pinWrapWidth / 2;
 
-    // Pinning and horizontal scrolling
+      // Pinning and horizontal scrolling
 
-    gsap.to('.project-main-container', {
-      scrollTrigger: {
-        scroller: pageContainer,
-        scrub: true,
-        trigger: '.projects-section-container',
-        pin: true,
-        anticipatePin: 1,
-        start: 'top top',
-        end: pinWrapWidth,
-      },
-      x: -horizontalScrollLength,
-      ease: 'none',
-    });
+      gsap.to('.project-main-container', {
+        scrollTrigger: {
+          scroller: pageContainer,
+          scrub: true,
+          trigger: '.projects-section-container',
+          pin: true,
+          anticipatePin: 1,
+          start: 'top top',
+          end: pinWrapWidth,
+        },
+        x: -horizontalScrollLength,
+        ease: 'none',
+      });
 
-    ScrollTrigger.addEventListener('refresh', () => scroller.update());
+      ScrollTrigger.addEventListener('refresh', () => scroller.update());
 
-    ScrollTrigger.refresh();
-    // });
-  } else {
-    const elementsToAnimate = [
-      ...document.querySelectorAll(
-        '.fadein-bottom-start, .fadein-top-start, .fadein-left-start, .fadein-right-start, .single-photo, .single-media, .project-photo-overlay'
-      ),
-    ];
+      ScrollTrigger.refresh();
+    },
+  });
 
-    elementsToAnimate.forEach((element) => {
-      element.style.opacity = '1';
-      element.style.transition = '0s';
-      element.style.transform = 'translateY(0)';
-      element.style.transform = 'translateX(0)';
-    });
-  }
+  // if (window.innerWidth >= 768) {
+  //   gsap.registerPlugin(ScrollTrigger);
+
+  //   const scroller = new LocomotiveScroll({
+  //     el: pageContainer,
+  //     smooth: true,
+  //     multiplier: 0.7,
+  //   });
+
+  //   scroller.on('scroll', ScrollTrigger.update);
+
+  //   ScrollTrigger.scrollerProxy(pageContainer, {
+  //     scrollTop(value) {
+  //       return arguments.length ? scroller.scrollTo(value, 0, 0) : scroller.scroll.instance.scroll.y;
+  //     },
+  //     getBoundingClientRect() {
+  //       return {
+  //         left: 0,
+  //         top: 0,
+  //         width: window.innerWidth,
+  //         height: window.innerHeight,
+  //       };
+  //     },
+  //     pinType: pageContainer.style.transform ? 'transform' : 'fixed',
+  //   });
+
+  //   // window.addEventListener('load', (e) => {
+  //   // e.preventDefault();
+  //   let pinWrap = document.querySelector('.project-main-container');
+  //   let pinWrapWidth = pinWrap.offsetWidth;
+  //   let horizontalScrollLength = pinWrapWidth / 2;
+
+  //   // Pinning and horizontal scrolling
+
+  //   gsap.to('.project-main-container', {
+  //     scrollTrigger: {
+  //       scroller: pageContainer,
+  //       scrub: true,
+  //       trigger: '.projects-section-container',
+  //       pin: true,
+  //       anticipatePin: 1,
+  //       start: 'top top',
+  //       end: pinWrapWidth,
+  //     },
+  //     x: -horizontalScrollLength,
+  //     ease: 'none',
+  //   });
+
+  //   ScrollTrigger.addEventListener('refresh', () => scroller.update());
+
+  //   ScrollTrigger.refresh();
+  //   // });
+  // } else {
+  //   const elementsToAnimate = [
+  //     ...document.querySelectorAll(
+  //       '.fadein-bottom-start, .fadein-top-start, .fadein-left-start, .fadein-right-start, .single-photo, .single-media, .project-photo-overlay'
+  //     ),
+  //   ];
+
+  //   elementsToAnimate.forEach((element) => {
+  //     element.style.opacity = '1';
+  //     element.style.transition = '0s';
+  //     element.style.transform = 'translateY(0)';
+  //     element.style.transform = 'translateX(0)';
+  //   });
+  // }
 };
 
 // LOADER ANIMATION
